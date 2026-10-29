@@ -1,0 +1,23 @@
+{
+    // Editor navigation over `src/` and `test/`. The enforced type contract is
+    // `tsconfig.types.json` (`npm run typecheck`, `npm run types`), which covers `src/` only:
+    // the live suite reads untyped API bodies.
+    //
+    // Tests import the package as a consumer does, `from '@webcommander/webcommander'`. Node resolves
+    // that through the `exports` field, but an editor has no `node_modules/@webcommander/webcommander`
+    // to follow, so `paths` maps the name and every subpath onto the source files.
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "allowJs": true,
+        "checkJs": false,
+        "noEmit": true,
+        "paths": {
+            "@webcommander/webcommander": ["./src/index.js"],
+            "@webcommander/webcommander/*": ["./src/*.js"]
+        }
+    },
+    "include": ["src/**/*.js", "test/**/*.js"],
+    "exclude": ["node_modules", "scratch"]
+}

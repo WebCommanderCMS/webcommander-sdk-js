@@ -1,0 +1,865 @@
+{
+    "name": "@webcommander/webcommander",
+    "version": "4.0.0",
+    "description": "JavaScript SDK for the WebCommander v4 REST API.",
+    "type": "module",
+    "license": "MIT",
+    "author": "WebCommander",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WebCommanderCMS/webcommander-sdk-js.git"
+    },
+    "homepage": "https://github.com/WebCommanderCMS/webcommander-sdk-js",
+    "bugs": {
+        "url": "https://github.com/WebCommanderCMS/webcommander-sdk-js/issues"
+    },
+    "engines": {
+        "node": ">=20.19.0"
+    },
+    "main": "./src/index.js",
+    "types": "./types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./types/index.d.ts",
+            "default": "./src/index.js"
+        },
+        "./redaction": {
+            "types": "./types/redaction.d.ts",
+            "default": "./src/redaction.js"
+        },
+        "./errors": {
+            "types": "./types/errors.d.ts",
+            "default": "./src/errors.js"
+        },
+        "./dto": {
+            "types": "./types/dto.d.ts",
+            "default": "./src/dto.js"
+        },
+        "./config/authConfig": {
+            "types": "./types/config/authConfig.d.ts",
+            "default": "./src/config/authConfig.js"
+        },
+        "./config/sdkConfig": {
+            "types": "./types/config/sdkConfig.d.ts",
+            "default": "./src/config/sdkConfig.js"
+        },
+        "./http/retryPolicy": {
+            "types": "./types/http/retryPolicy.d.ts",
+            "default": "./src/http/retryPolicy.js"
+        },
+        "./http/queryParams": {
+            "types": "./types/http/queryParams.d.ts",
+            "default": "./src/http/queryParams.js"
+        },
+        "./http/urlBuilder": {
+            "types": "./types/http/urlBuilder.d.ts",
+            "default": "./src/http/urlBuilder.js"
+        },
+        "./http/transport": {
+            "types": "./types/http/transport.d.ts",
+            "default": "./src/http/transport.js"
+        },
+        "./auth/tokenStore": {
+            "types": "./types/auth/tokenStore.d.ts",
+            "default": "./src/auth/tokenStore.js"
+        },
+        "./auth/tokenProvider": {
+            "types": "./types/auth/tokenProvider.d.ts",
+            "default": "./src/auth/tokenProvider.js"
+        },
+        "./client/apiResponse": {
+            "types": "./types/client/apiResponse.d.ts",
+            "default": "./src/client/apiResponse.js"
+        },
+        "./client/logging": {
+            "types": "./types/client/logging.d.ts",
+            "default": "./src/client/logging.js"
+        },
+        "./client/resourceBinding": {
+            "types": "./types/client/resourceBinding.d.ts",
+            "default": "./src/client/resourceBinding.js"
+        },
+        "./client/webCommanderClient": {
+            "types": "./types/client/webCommanderClient.d.ts",
+            "default": "./src/client/webCommanderClient.js"
+        },
+        "./client/clientRegistry": {
+            "types": "./types/client/clientRegistry.d.ts",
+            "default": "./src/client/clientRegistry.js"
+        },
+        "./client/pagination": {
+            "types": "./types/client/pagination.d.ts",
+            "default": "./src/client/pagination.js"
+        },
+        "./client/console": {
+            "types": "./types/client/console.d.ts",
+            "default": "./src/client/console.js"
+        },
+        "./resources/customers/adminCustomers": {
+            "types": "./types/resources/customers/adminCustomers.d.ts",
+            "default": "./src/resources/customers/adminCustomers.js"
+        },
+        "./resources/customers/adminCustomersDto": {
+            "types": "./types/resources/customers/adminCustomersDto.d.ts",
+            "default": "./src/resources/customers/adminCustomersDto.js"
+        },
+        "./resources/customers/adminCustomersUrls": {
+            "types": "./types/resources/customers/adminCustomersUrls.d.ts",
+            "default": "./src/resources/customers/adminCustomersUrls.js"
+        },
+        "./resources/orderFlags/orderFlags": {
+            "types": "./types/resources/orderFlags/orderFlags.d.ts",
+            "default": "./src/resources/orderFlags/orderFlags.js"
+        },
+        "./resources/orderFlags/orderFlagsDto": {
+            "types": "./types/resources/orderFlags/orderFlagsDto.d.ts",
+            "default": "./src/resources/orderFlags/orderFlagsDto.js"
+        },
+        "./resources/orderFlags/orderFlagsUrls": {
+            "types": "./types/resources/orderFlags/orderFlagsUrls.d.ts",
+            "default": "./src/resources/orderFlags/orderFlagsUrls.js"
+        },
+        "./resources/inventoryLocations/inventoryLocations": {
+            "types": "./types/resources/inventoryLocations/inventoryLocations.d.ts",
+            "default": "./src/resources/inventoryLocations/inventoryLocations.js"
+        },
+        "./resources/inventoryLocations/inventoryLocationsDto": {
+            "types": "./types/resources/inventoryLocations/inventoryLocationsDto.d.ts",
+            "default": "./src/resources/inventoryLocations/inventoryLocationsDto.js"
+        },
+        "./resources/inventoryLocations/inventoryLocationsUrls": {
+            "types": "./types/resources/inventoryLocations/inventoryLocationsUrls.d.ts",
+            "default": "./src/resources/inventoryLocations/inventoryLocationsUrls.js"
+        },
+        "./resources/shippingMethods/shippingMethods": {
+            "types": "./types/resources/shippingMethods/shippingMethods.d.ts",
+            "default": "./src/resources/shippingMethods/shippingMethods.js"
+        },
+        "./resources/shippingMethods/shippingMethodsDto": {
+            "types": "./types/resources/shippingMethods/shippingMethodsDto.d.ts",
+            "default": "./src/resources/shippingMethods/shippingMethodsDto.js"
+        },
+        "./resources/shippingMethods/shippingMethodsUrls": {
+            "types": "./types/resources/shippingMethods/shippingMethodsUrls.d.ts",
+            "default": "./src/resources/shippingMethods/shippingMethodsUrls.js"
+        },
+        "./resources/shippingClasses/shippingClasses": {
+            "types": "./types/resources/shippingClasses/shippingClasses.d.ts",
+            "default": "./src/resources/shippingClasses/shippingClasses.js"
+        },
+        "./resources/shippingClasses/shippingClassesDto": {
+            "types": "./types/resources/shippingClasses/shippingClassesDto.d.ts",
+            "default": "./src/resources/shippingClasses/shippingClassesDto.js"
+        },
+        "./resources/shippingClasses/shippingClassesUrls": {
+            "types": "./types/resources/shippingClasses/shippingClassesUrls.d.ts",
+            "default": "./src/resources/shippingClasses/shippingClassesUrls.js"
+        },
+        "./resources/aliases/aliases": {
+            "types": "./types/resources/aliases/aliases.d.ts",
+            "default": "./src/resources/aliases/aliases.js"
+        },
+        "./resources/aliases/aliasesDto": {
+            "types": "./types/resources/aliases/aliasesDto.d.ts",
+            "default": "./src/resources/aliases/aliasesDto.js"
+        },
+        "./resources/aliases/aliasesUrls": {
+            "types": "./types/resources/aliases/aliasesUrls.d.ts",
+            "default": "./src/resources/aliases/aliasesUrls.js"
+        },
+        "./resources/orders/orders": {
+            "types": "./types/resources/orders/orders.d.ts",
+            "default": "./src/resources/orders/orders.js"
+        },
+        "./resources/orders/ordersDto": {
+            "types": "./types/resources/orders/ordersDto.d.ts",
+            "default": "./src/resources/orders/ordersDto.js"
+        },
+        "./resources/orders/ordersUrls": {
+            "types": "./types/resources/orders/ordersUrls.d.ts",
+            "default": "./src/resources/orders/ordersUrls.js"
+        },
+        "./resources/orderCustomFields/orderCustomFields": {
+            "types": "./types/resources/orderCustomFields/orderCustomFields.d.ts",
+            "default": "./src/resources/orderCustomFields/orderCustomFields.js"
+        },
+        "./resources/orderCustomFields/orderCustomFieldsDto": {
+            "types": "./types/resources/orderCustomFields/orderCustomFieldsDto.d.ts",
+            "default": "./src/resources/orderCustomFields/orderCustomFieldsDto.js"
+        },
+        "./resources/orderCustomFields/orderCustomFieldsUrls": {
+            "types": "./types/resources/orderCustomFields/orderCustomFieldsUrls.d.ts",
+            "default": "./src/resources/orderCustomFields/orderCustomFieldsUrls.js"
+        },
+        "./resources/blogCategories/blogCategories": {
+            "types": "./types/resources/blogCategories/blogCategories.d.ts",
+            "default": "./src/resources/blogCategories/blogCategories.js"
+        },
+        "./resources/blogCategories/blogCategoriesDto": {
+            "types": "./types/resources/blogCategories/blogCategoriesDto.d.ts",
+            "default": "./src/resources/blogCategories/blogCategoriesDto.js"
+        },
+        "./resources/blogCategories/blogCategoriesUrls": {
+            "types": "./types/resources/blogCategories/blogCategoriesUrls.d.ts",
+            "default": "./src/resources/blogCategories/blogCategoriesUrls.js"
+        },
+        "./resources/categories/categories": {
+            "types": "./types/resources/categories/categories.d.ts",
+            "default": "./src/resources/categories/categories.js"
+        },
+        "./resources/categories/categoriesDto": {
+            "types": "./types/resources/categories/categoriesDto.d.ts",
+            "default": "./src/resources/categories/categoriesDto.js"
+        },
+        "./resources/categories/categoriesUrls": {
+            "types": "./types/resources/categories/categoriesUrls.d.ts",
+            "default": "./src/resources/categories/categoriesUrls.js"
+        },
+        "./resources/discountProfiles/discountProfiles": {
+            "types": "./types/resources/discountProfiles/discountProfiles.d.ts",
+            "default": "./src/resources/discountProfiles/discountProfiles.js"
+        },
+        "./resources/discountProfiles/discountProfilesDto": {
+            "types": "./types/resources/discountProfiles/discountProfilesDto.d.ts",
+            "default": "./src/resources/discountProfiles/discountProfilesDto.js"
+        },
+        "./resources/discountProfiles/discountProfilesUrls": {
+            "types": "./types/resources/discountProfiles/discountProfilesUrls.d.ts",
+            "default": "./src/resources/discountProfiles/discountProfilesUrls.js"
+        },
+        "./resources/blogs/blogs": {
+            "types": "./types/resources/blogs/blogs.d.ts",
+            "default": "./src/resources/blogs/blogs.js"
+        },
+        "./resources/blogs/blogsDto": {
+            "types": "./types/resources/blogs/blogsDto.d.ts",
+            "default": "./src/resources/blogs/blogsDto.js"
+        },
+        "./resources/blogs/blogsUrls": {
+            "types": "./types/resources/blogs/blogsUrls.d.ts",
+            "default": "./src/resources/blogs/blogsUrls.js"
+        },
+        "./resources/carts/carts": {
+            "types": "./types/resources/carts/carts.d.ts",
+            "default": "./src/resources/carts/carts.js"
+        },
+        "./resources/carts/cartsDto": {
+            "types": "./types/resources/carts/cartsDto.d.ts",
+            "default": "./src/resources/carts/cartsDto.js"
+        },
+        "./resources/carts/cartsUrls": {
+            "types": "./types/resources/carts/cartsUrls.d.ts",
+            "default": "./src/resources/carts/cartsUrls.js"
+        },
+        "./resources/products/products": {
+            "types": "./types/resources/products/products.d.ts",
+            "default": "./src/resources/products/products.js"
+        },
+        "./resources/products/productsDto": {
+            "types": "./types/resources/products/productsDto.d.ts",
+            "default": "./src/resources/products/productsDto.js"
+        },
+        "./resources/products/productsUrls": {
+            "types": "./types/resources/products/productsUrls.d.ts",
+            "default": "./src/resources/products/productsUrls.js"
+        },
+        "./resources/countries/countries": {
+            "types": "./types/resources/countries/countries.d.ts",
+            "default": "./src/resources/countries/countries.js"
+        },
+        "./resources/countries/countriesDto": {
+            "types": "./types/resources/countries/countriesDto.d.ts",
+            "default": "./src/resources/countries/countriesDto.js"
+        },
+        "./resources/countries/countriesUrls": {
+            "types": "./types/resources/countries/countriesUrls.d.ts",
+            "default": "./src/resources/countries/countriesUrls.js"
+        },
+        "./resources/customerGroups/customerGroups": {
+            "types": "./types/resources/customerGroups/customerGroups.d.ts",
+            "default": "./src/resources/customerGroups/customerGroups.js"
+        },
+        "./resources/customerGroups/customerGroupsDto": {
+            "types": "./types/resources/customerGroups/customerGroupsDto.d.ts",
+            "default": "./src/resources/customerGroups/customerGroupsDto.js"
+        },
+        "./resources/customerGroups/customerGroupsUrls": {
+            "types": "./types/resources/customerGroups/customerGroupsUrls.d.ts",
+            "default": "./src/resources/customerGroups/customerGroupsUrls.js"
+        },
+        "./resources/currencies/currencies": {
+            "types": "./types/resources/currencies/currencies.d.ts",
+            "default": "./src/resources/currencies/currencies.js"
+        },
+        "./resources/currencies/currenciesDto": {
+            "types": "./types/resources/currencies/currenciesDto.d.ts",
+            "default": "./src/resources/currencies/currenciesDto.js"
+        },
+        "./resources/currencies/currenciesUrls": {
+            "types": "./types/resources/currencies/currenciesUrls.d.ts",
+            "default": "./src/resources/currencies/currenciesUrls.js"
+        },
+        "./resources/variations/variations": {
+            "types": "./types/resources/variations/variations.d.ts",
+            "default": "./src/resources/variations/variations.js"
+        },
+        "./resources/variations/variationsDto": {
+            "types": "./types/resources/variations/variationsDto.d.ts",
+            "default": "./src/resources/variations/variationsDto.js"
+        },
+        "./resources/variations/variationsUrls": {
+            "types": "./types/resources/variations/variationsUrls.d.ts",
+            "default": "./src/resources/variations/variationsUrls.js"
+        },
+        "./resources/cities/cities": {
+            "types": "./types/resources/cities/cities.d.ts",
+            "default": "./src/resources/cities/cities.js"
+        },
+        "./resources/cities/citiesDto": {
+            "types": "./types/resources/cities/citiesDto.d.ts",
+            "default": "./src/resources/cities/citiesDto.js"
+        },
+        "./resources/cities/citiesUrls": {
+            "types": "./types/resources/cities/citiesUrls.d.ts",
+            "default": "./src/resources/cities/citiesUrls.js"
+        },
+        "./resources/paymentGateways/paymentGateways": {
+            "types": "./types/resources/paymentGateways/paymentGateways.d.ts",
+            "default": "./src/resources/paymentGateways/paymentGateways.js"
+        },
+        "./resources/paymentGateways/paymentGatewaysDto": {
+            "types": "./types/resources/paymentGateways/paymentGatewaysDto.d.ts",
+            "default": "./src/resources/paymentGateways/paymentGatewaysDto.js"
+        },
+        "./resources/paymentGateways/paymentGatewaysUrls": {
+            "types": "./types/resources/paymentGateways/paymentGatewaysUrls.d.ts",
+            "default": "./src/resources/paymentGateways/paymentGatewaysUrls.js"
+        },
+        "./resources/taxCodes/taxCodes": {
+            "types": "./types/resources/taxCodes/taxCodes.d.ts",
+            "default": "./src/resources/taxCodes/taxCodes.js"
+        },
+        "./resources/taxCodes/taxCodesDto": {
+            "types": "./types/resources/taxCodes/taxCodesDto.d.ts",
+            "default": "./src/resources/taxCodes/taxCodesDto.js"
+        },
+        "./resources/taxCodes/taxCodesUrls": {
+            "types": "./types/resources/taxCodes/taxCodesUrls.d.ts",
+            "default": "./src/resources/taxCodes/taxCodesUrls.js"
+        },
+        "./resources/taxProfiles/taxProfiles": {
+            "types": "./types/resources/taxProfiles/taxProfiles.d.ts",
+            "default": "./src/resources/taxProfiles/taxProfiles.js"
+        },
+        "./resources/taxProfiles/taxProfilesDto": {
+            "types": "./types/resources/taxProfiles/taxProfilesDto.d.ts",
+            "default": "./src/resources/taxProfiles/taxProfilesDto.js"
+        },
+        "./resources/taxProfiles/taxProfilesUrls": {
+            "types": "./types/resources/taxProfiles/taxProfilesUrls.d.ts",
+            "default": "./src/resources/taxProfiles/taxProfilesUrls.js"
+        },
+        "./resources/taxRules/taxRules": {
+            "types": "./types/resources/taxRules/taxRules.d.ts",
+            "default": "./src/resources/taxRules/taxRules.js"
+        },
+        "./resources/taxRules/taxRulesDto": {
+            "types": "./types/resources/taxRules/taxRulesDto.d.ts",
+            "default": "./src/resources/taxRules/taxRulesDto.js"
+        },
+        "./resources/taxRules/taxRulesUrls": {
+            "types": "./types/resources/taxRules/taxRulesUrls.d.ts",
+            "default": "./src/resources/taxRules/taxRulesUrls.js"
+        },
+        "./resources/taxZones/taxZones": {
+            "types": "./types/resources/taxZones/taxZones.d.ts",
+            "default": "./src/resources/taxZones/taxZones.js"
+        },
+        "./resources/taxZones/taxZonesDto": {
+            "types": "./types/resources/taxZones/taxZonesDto.d.ts",
+            "default": "./src/resources/taxZones/taxZonesDto.js"
+        },
+        "./resources/taxZones/taxZonesUrls": {
+            "types": "./types/resources/taxZones/taxZonesUrls.d.ts",
+            "default": "./src/resources/taxZones/taxZonesUrls.js"
+        },
+        "./resources/taxSettings/taxSettings": {
+            "types": "./types/resources/taxSettings/taxSettings.d.ts",
+            "default": "./src/resources/taxSettings/taxSettings.js"
+        },
+        "./resources/taxSettings/taxSettingsDto": {
+            "types": "./types/resources/taxSettings/taxSettingsDto.d.ts",
+            "default": "./src/resources/taxSettings/taxSettingsDto.js"
+        },
+        "./resources/taxSettings/taxSettingsUrls": {
+            "types": "./types/resources/taxSettings/taxSettingsUrls.d.ts",
+            "default": "./src/resources/taxSettings/taxSettingsUrls.js"
+        },
+        "./resources/taxCountryTaxes/taxCountryTaxes": {
+            "types": "./types/resources/taxCountryTaxes/taxCountryTaxes.d.ts",
+            "default": "./src/resources/taxCountryTaxes/taxCountryTaxes.js"
+        },
+        "./resources/taxCountryTaxes/taxCountryTaxesDto": {
+            "types": "./types/resources/taxCountryTaxes/taxCountryTaxesDto.d.ts",
+            "default": "./src/resources/taxCountryTaxes/taxCountryTaxesDto.js"
+        },
+        "./resources/taxCountryTaxes/taxCountryTaxesUrls": {
+            "types": "./types/resources/taxCountryTaxes/taxCountryTaxesUrls.d.ts",
+            "default": "./src/resources/taxCountryTaxes/taxCountryTaxesUrls.js"
+        },
+        "./resources/taxCustomProfiles/taxCustomProfiles": {
+            "types": "./types/resources/taxCustomProfiles/taxCustomProfiles.d.ts",
+            "default": "./src/resources/taxCustomProfiles/taxCustomProfiles.js"
+        },
+        "./resources/taxCustomProfiles/taxCustomProfilesDto": {
+            "types": "./types/resources/taxCustomProfiles/taxCustomProfilesDto.d.ts",
+            "default": "./src/resources/taxCustomProfiles/taxCustomProfilesDto.js"
+        },
+        "./resources/taxCustomProfiles/taxCustomProfilesUrls": {
+            "types": "./types/resources/taxCustomProfiles/taxCustomProfilesUrls.d.ts",
+            "default": "./src/resources/taxCustomProfiles/taxCustomProfilesUrls.js"
+        },
+        "./resources/transactions/transactions": {
+            "types": "./types/resources/transactions/transactions.d.ts",
+            "default": "./src/resources/transactions/transactions.js"
+        },
+        "./resources/transactions/transactionsDto": {
+            "types": "./types/resources/transactions/transactionsDto.d.ts",
+            "default": "./src/resources/transactions/transactionsDto.js"
+        },
+        "./resources/transactions/transactionsUrls": {
+            "types": "./types/resources/transactions/transactionsUrls.d.ts",
+            "default": "./src/resources/transactions/transactionsUrls.js"
+        },
+        "./resources/trash/trash": {
+            "types": "./types/resources/trash/trash.d.ts",
+            "default": "./src/resources/trash/trash.js"
+        },
+        "./resources/trash/trashDto": {
+            "types": "./types/resources/trash/trashDto.d.ts",
+            "default": "./src/resources/trash/trashDto.js"
+        },
+        "./resources/trash/trashUrls": {
+            "types": "./types/resources/trash/trashUrls.d.ts",
+            "default": "./src/resources/trash/trashUrls.js"
+        },
+        "./resources/email/email": {
+            "types": "./types/resources/email/email.d.ts",
+            "default": "./src/resources/email/email.js"
+        },
+        "./resources/email/emailDto": {
+            "types": "./types/resources/email/emailDto.d.ts",
+            "default": "./src/resources/email/emailDto.js"
+        },
+        "./resources/email/emailUrls": {
+            "types": "./types/resources/email/emailUrls.d.ts",
+            "default": "./src/resources/email/emailUrls.js"
+        },
+        "./resources/commonSettings/commonSettings": {
+            "types": "./types/resources/commonSettings/commonSettings.d.ts",
+            "default": "./src/resources/commonSettings/commonSettings.js"
+        },
+        "./resources/commonSettings/commonSettingsDto": {
+            "types": "./types/resources/commonSettings/commonSettingsDto.d.ts",
+            "default": "./src/resources/commonSettings/commonSettingsDto.js"
+        },
+        "./resources/commonSettings/commonSettingsUrls": {
+            "types": "./types/resources/commonSettings/commonSettingsUrls.d.ts",
+            "default": "./src/resources/commonSettings/commonSettingsUrls.js"
+        },
+        "./resources/pages/pages": {
+            "types": "./types/resources/pages/pages.d.ts",
+            "default": "./src/resources/pages/pages.js"
+        },
+        "./resources/pages/pagesDto": {
+            "types": "./types/resources/pages/pagesDto.d.ts",
+            "default": "./src/resources/pages/pagesDto.js"
+        },
+        "./resources/pages/pagesUrls": {
+            "types": "./types/resources/pages/pagesUrls.d.ts",
+            "default": "./src/resources/pages/pagesUrls.js"
+        },
+        "./resources/settings/pageSettings/categoryPage": {
+            "types": "./types/resources/settings/pageSettings/categoryPage.d.ts",
+            "default": "./src/resources/settings/pageSettings/categoryPage.js"
+        },
+        "./resources/settings/pageSettings/categoryPageDto": {
+            "types": "./types/resources/settings/pageSettings/categoryPageDto.d.ts",
+            "default": "./src/resources/settings/pageSettings/categoryPageDto.js"
+        },
+        "./resources/settings/pageSettings/categoryPageUrls": {
+            "types": "./types/resources/settings/pageSettings/categoryPageUrls.d.ts",
+            "default": "./src/resources/settings/pageSettings/categoryPageUrls.js"
+        },
+        "./resources/settings/pageSettings/checkoutPage": {
+            "types": "./types/resources/settings/pageSettings/checkoutPage.d.ts",
+            "default": "./src/resources/settings/pageSettings/checkoutPage.js"
+        },
+        "./resources/settings/pageSettings/checkoutPageDto": {
+            "types": "./types/resources/settings/pageSettings/checkoutPageDto.d.ts",
+            "default": "./src/resources/settings/pageSettings/checkoutPageDto.js"
+        },
+        "./resources/settings/pageSettings/checkoutPageUrls": {
+            "types": "./types/resources/settings/pageSettings/checkoutPageUrls.d.ts",
+            "default": "./src/resources/settings/pageSettings/checkoutPageUrls.js"
+        },
+        "./resources/settings/pageSettings/productPage": {
+            "types": "./types/resources/settings/pageSettings/productPage.d.ts",
+            "default": "./src/resources/settings/pageSettings/productPage.js"
+        },
+        "./resources/settings/pageSettings/productPageDto": {
+            "types": "./types/resources/settings/pageSettings/productPageDto.d.ts",
+            "default": "./src/resources/settings/pageSettings/productPageDto.js"
+        },
+        "./resources/settings/pageSettings/productPageUrls": {
+            "types": "./types/resources/settings/pageSettings/productPageUrls.d.ts",
+            "default": "./src/resources/settings/pageSettings/productPageUrls.js"
+        },
+        "./resources/settings/pageSettings/searchResultPage": {
+            "types": "./types/resources/settings/pageSettings/searchResultPage.d.ts",
+            "default": "./src/resources/settings/pageSettings/searchResultPage.js"
+        },
+        "./resources/settings/pageSettings/searchResultPageDto": {
+            "types": "./types/resources/settings/pageSettings/searchResultPageDto.d.ts",
+            "default": "./src/resources/settings/pageSettings/searchResultPageDto.js"
+        },
+        "./resources/settings/pageSettings/searchResultPageUrls": {
+            "types": "./types/resources/settings/pageSettings/searchResultPageUrls.d.ts",
+            "default": "./src/resources/settings/pageSettings/searchResultPageUrls.js"
+        },
+        "./resources/settings/pageSettings/shoppingCart": {
+            "types": "./types/resources/settings/pageSettings/shoppingCart.d.ts",
+            "default": "./src/resources/settings/pageSettings/shoppingCart.js"
+        },
+        "./resources/settings/pageSettings/shoppingCartDto": {
+            "types": "./types/resources/settings/pageSettings/shoppingCartDto.d.ts",
+            "default": "./src/resources/settings/pageSettings/shoppingCartDto.js"
+        },
+        "./resources/settings/pageSettings/shoppingCartUrls": {
+            "types": "./types/resources/settings/pageSettings/shoppingCartUrls.d.ts",
+            "default": "./src/resources/settings/pageSettings/shoppingCartUrls.js"
+        },
+        "./resources/settings/priceDisplaySettings/priceDisplaySettings": {
+            "types": "./types/resources/settings/priceDisplaySettings/priceDisplaySettings.d.ts",
+            "default": "./src/resources/settings/priceDisplaySettings/priceDisplaySettings.js"
+        },
+        "./resources/settings/priceDisplaySettings/priceDisplaySettingsDto": {
+            "types": "./types/resources/settings/priceDisplaySettings/priceDisplaySettingsDto.d.ts",
+            "default": "./src/resources/settings/priceDisplaySettings/priceDisplaySettingsDto.js"
+        },
+        "./resources/settings/priceDisplaySettings/priceDisplaySettingsUrls": {
+            "types": "./types/resources/settings/priceDisplaySettings/priceDisplaySettingsUrls.d.ts",
+            "default": "./src/resources/settings/priceDisplaySettings/priceDisplaySettingsUrls.js"
+        },
+        "./resources/settings/animationEffects/animationEffects": {
+            "types": "./types/resources/settings/animationEffects/animationEffects.d.ts",
+            "default": "./src/resources/settings/animationEffects/animationEffects.js"
+        },
+        "./resources/settings/animationEffects/animationEffectsDto": {
+            "types": "./types/resources/settings/animationEffects/animationEffectsDto.d.ts",
+            "default": "./src/resources/settings/animationEffects/animationEffectsDto.js"
+        },
+        "./resources/settings/animationEffects/animationEffectsUrls": {
+            "types": "./types/resources/settings/animationEffects/animationEffectsUrls.d.ts",
+            "default": "./src/resources/settings/animationEffects/animationEffectsUrls.js"
+        },
+        "./resources/settings/productListing/productListing": {
+            "types": "./types/resources/settings/productListing/productListing.d.ts",
+            "default": "./src/resources/settings/productListing/productListing.js"
+        },
+        "./resources/settings/productListing/productListingDto": {
+            "types": "./types/resources/settings/productListing/productListingDto.d.ts",
+            "default": "./src/resources/settings/productListing/productListingDto.js"
+        },
+        "./resources/settings/productListing/productListingUrls": {
+            "types": "./types/resources/settings/productListing/productListingUrls.d.ts",
+            "default": "./src/resources/settings/productListing/productListingUrls.js"
+        },
+        "./resources/settings/customerPortal/customerPortal": {
+            "types": "./types/resources/settings/customerPortal/customerPortal.d.ts",
+            "default": "./src/resources/settings/customerPortal/customerPortal.js"
+        },
+        "./resources/settings/customerPortal/customerPortalDto": {
+            "types": "./types/resources/settings/customerPortal/customerPortalDto.d.ts",
+            "default": "./src/resources/settings/customerPortal/customerPortalDto.js"
+        },
+        "./resources/settings/customerPortal/customerPortalUrls": {
+            "types": "./types/resources/settings/customerPortal/customerPortalUrls.d.ts",
+            "default": "./src/resources/settings/customerPortal/customerPortalUrls.js"
+        },
+        "./resources/settings/siteSettings/siteSettings": {
+            "types": "./types/resources/settings/siteSettings/siteSettings.d.ts",
+            "default": "./src/resources/settings/siteSettings/siteSettings.js"
+        },
+        "./resources/settings/siteSettings/siteSettingsDto": {
+            "types": "./types/resources/settings/siteSettings/siteSettingsDto.d.ts",
+            "default": "./src/resources/settings/siteSettings/siteSettingsDto.js"
+        },
+        "./resources/settings/siteSettings/siteSettingsUrls": {
+            "types": "./types/resources/settings/siteSettings/siteSettingsUrls.d.ts",
+            "default": "./src/resources/settings/siteSettings/siteSettingsUrls.js"
+        },
+        "./resources/settings/shippingSettings/shippingSettings": {
+            "types": "./types/resources/settings/shippingSettings/shippingSettings.d.ts",
+            "default": "./src/resources/settings/shippingSettings/shippingSettings.js"
+        },
+        "./resources/settings/shippingSettings/shippingSettingsDto": {
+            "types": "./types/resources/settings/shippingSettings/shippingSettingsDto.d.ts",
+            "default": "./src/resources/settings/shippingSettings/shippingSettingsDto.js"
+        },
+        "./resources/settings/shippingSettings/shippingSettingsUrls": {
+            "types": "./types/resources/settings/shippingSettings/shippingSettingsUrls.d.ts",
+            "default": "./src/resources/settings/shippingSettings/shippingSettingsUrls.js"
+        },
+        "./resources/settings/searchSettings/searchSettings": {
+            "types": "./types/resources/settings/searchSettings/searchSettings.d.ts",
+            "default": "./src/resources/settings/searchSettings/searchSettings.js"
+        },
+        "./resources/settings/searchSettings/searchSettingsDto": {
+            "types": "./types/resources/settings/searchSettings/searchSettingsDto.d.ts",
+            "default": "./src/resources/settings/searchSettings/searchSettingsDto.js"
+        },
+        "./resources/settings/searchSettings/searchSettingsUrls": {
+            "types": "./types/resources/settings/searchSettings/searchSettingsUrls.d.ts",
+            "default": "./src/resources/settings/searchSettings/searchSettingsUrls.js"
+        },
+        "./resources/settings/ecommerceSettings/ecommerceSettings": {
+            "types": "./types/resources/settings/ecommerceSettings/ecommerceSettings.d.ts",
+            "default": "./src/resources/settings/ecommerceSettings/ecommerceSettings.js"
+        },
+        "./resources/settings/ecommerceSettings/ecommerceSettingsDto": {
+            "types": "./types/resources/settings/ecommerceSettings/ecommerceSettingsDto.d.ts",
+            "default": "./src/resources/settings/ecommerceSettings/ecommerceSettingsDto.js"
+        },
+        "./resources/settings/ecommerceSettings/ecommerceSettingsUrls": {
+            "types": "./types/resources/settings/ecommerceSettings/ecommerceSettingsUrls.d.ts",
+            "default": "./src/resources/settings/ecommerceSettings/ecommerceSettingsUrls.js"
+        },
+        "./resources/settings/seoConfiguration/seoConfiguration": {
+            "types": "./types/resources/settings/seoConfiguration/seoConfiguration.d.ts",
+            "default": "./src/resources/settings/seoConfiguration/seoConfiguration.js"
+        },
+        "./resources/settings/seoConfiguration/seoConfigurationDto": {
+            "types": "./types/resources/settings/seoConfiguration/seoConfigurationDto.d.ts",
+            "default": "./src/resources/settings/seoConfiguration/seoConfigurationDto.js"
+        },
+        "./resources/settings/seoConfiguration/seoConfigurationUrls": {
+            "types": "./types/resources/settings/seoConfiguration/seoConfigurationUrls.d.ts",
+            "default": "./src/resources/settings/seoConfiguration/seoConfigurationUrls.js"
+        }
+    },
+    "files": [
+        "src",
+        "types",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "test": "node --env-file-if-exists=.env test/resources/customers/adminCustomers.js",
+        "test:credentials": "node --env-file-if-exists=.env test/credentials.js",
+        "test:map": "node --env-file-if-exists=.env test/resources/customers/adminCustomersMap.js",
+        "test:json": "node --env-file-if-exists=.env test/resources/customers/adminCustomersJson.js",
+        "test:dto": "node --env-file-if-exists=.env test/resources/customers/adminCustomersDto.js",
+        "test:seo": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfiguration.js",
+        "test:seo:map": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationMap.js",
+        "test:seo:json": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationJson.js",
+        "test:seo:dto": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationDto.js",
+        "test:srp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPage.js",
+        "test:srp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageMap.js",
+        "test:srp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageJson.js",
+        "test:srp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageDto.js",
+        "test:cp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPage.js",
+        "test:cp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageMap.js",
+        "test:cp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageJson.js",
+        "test:cp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageDto.js",
+        "test:sc": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCart.js",
+        "test:sc:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartMap.js",
+        "test:sc:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartJson.js",
+        "test:sc:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartDto.js",
+        "test:pp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPage.js",
+        "test:pp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageMap.js",
+        "test:pp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageJson.js",
+        "test:pp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageDto.js",
+        "test:chp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPage.js",
+        "test:chp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageMap.js",
+        "test:chp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageJson.js",
+        "test:chp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageDto.js",
+        "test:pds": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettings.js",
+        "test:pds:map": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsMap.js",
+        "test:pds:json": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsJson.js",
+        "test:pds:dto": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsDto.js",
+        "test:ae": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffects.js",
+        "test:ae:map": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsMap.js",
+        "test:ae:json": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsJson.js",
+        "test:ae:dto": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsDto.js",
+        "test:pl": "node --env-file-if-exists=.env test/resources/settings/productListing/productListing.js",
+        "test:pl:map": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingMap.js",
+        "test:pl:json": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingJson.js",
+        "test:pl:dto": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingDto.js",
+        "test:cpo": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortal.js",
+        "test:cpo:map": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalMap.js",
+        "test:cpo:json": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalJson.js",
+        "test:cpo:dto": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalDto.js",
+        "test:ss": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettings.js",
+        "test:ss:map": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsMap.js",
+        "test:ss:json": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsJson.js",
+        "test:ss:dto": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsDto.js",
+        "test:shs": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettings.js",
+        "test:shs:map": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsMap.js",
+        "test:shs:json": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsJson.js",
+        "test:shs:dto": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsDto.js",
+        "test:ses": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettings.js",
+        "test:ses:map": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsMap.js",
+        "test:ses:json": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsJson.js",
+        "test:ses:dto": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsDto.js",
+        "test:ecs": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettings.js",
+        "test:ecs:map": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsMap.js",
+        "test:ecs:json": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsJson.js",
+        "test:ecs:dto": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsDto.js",
+        "test:of": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlags.js",
+        "test:of:map": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsMap.js",
+        "test:of:json": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsJson.js",
+        "test:of:dto": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsDto.js",
+        "test:il": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocations.js",
+        "test:il:map": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsMap.js",
+        "test:il:json": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsJson.js",
+        "test:il:dto": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsDto.js",
+        "test:sm": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethods.js",
+        "test:sm:map": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsMap.js",
+        "test:sm:json": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsJson.js",
+        "test:sm:dto": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsDto.js",
+        "test:shc": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClasses.js",
+        "test:shc:map": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesMap.js",
+        "test:shc:json": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesJson.js",
+        "test:shc:dto": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesDto.js",
+        "test:al": "node --env-file-if-exists=.env test/resources/aliases/aliases.js",
+        "test:al:map": "node --env-file-if-exists=.env test/resources/aliases/aliasesMap.js",
+        "test:al:json": "node --env-file-if-exists=.env test/resources/aliases/aliasesJson.js",
+        "test:al:dto": "node --env-file-if-exists=.env test/resources/aliases/aliasesDto.js",
+        "test:ord": "node --env-file-if-exists=.env test/resources/orders/orders.js",
+        "test:ord:map": "node --env-file-if-exists=.env test/resources/orders/ordersMap.js",
+        "test:ord:json": "node --env-file-if-exists=.env test/resources/orders/ordersJson.js",
+        "test:ord:dto": "node --env-file-if-exists=.env test/resources/orders/ordersDto.js",
+        "test:ocf": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFields.js",
+        "test:ocf:map": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsMap.js",
+        "test:ocf:json": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsJson.js",
+        "test:ocf:dto": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsDto.js",
+        "test:bc": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategories.js",
+        "test:bc:map": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesMap.js",
+        "test:bc:json": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesJson.js",
+        "test:bc:dto": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesDto.js",
+        "test:cat": "node --env-file-if-exists=.env test/resources/categories/categories.js",
+        "test:cat:map": "node --env-file-if-exists=.env test/resources/categories/categoriesMap.js",
+        "test:cat:json": "node --env-file-if-exists=.env test/resources/categories/categoriesJson.js",
+        "test:cat:dto": "node --env-file-if-exists=.env test/resources/categories/categoriesDto.js",
+        "test:dp": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfiles.js",
+        "test:dp:map": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesMap.js",
+        "test:dp:json": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesJson.js",
+        "test:dp:dto": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesDto.js",
+        "test:bl": "node --env-file-if-exists=.env test/resources/blogs/blogs.js",
+        "test:bl:map": "node --env-file-if-exists=.env test/resources/blogs/blogsMap.js",
+        "test:bl:json": "node --env-file-if-exists=.env test/resources/blogs/blogsJson.js",
+        "test:bl:dto": "node --env-file-if-exists=.env test/resources/blogs/blogsDto.js",
+        "test:ca": "node --env-file-if-exists=.env test/resources/carts/carts.js",
+        "test:ca:map": "node --env-file-if-exists=.env test/resources/carts/cartsMap.js",
+        "test:ca:json": "node --env-file-if-exists=.env test/resources/carts/cartsJson.js",
+        "test:ca:dto": "node --env-file-if-exists=.env test/resources/carts/cartsDto.js",
+        "test:prd": "node --env-file-if-exists=.env test/resources/products/products.js",
+        "test:prd:map": "node --env-file-if-exists=.env test/resources/products/productsMap.js",
+        "test:prd:json": "node --env-file-if-exists=.env test/resources/products/productsJson.js",
+        "test:prd:dto": "node --env-file-if-exists=.env test/resources/products/productsDto.js",
+        "test:ctry": "node --env-file-if-exists=.env test/resources/countries/countries.js",
+        "test:ctry:map": "node --env-file-if-exists=.env test/resources/countries/countriesMap.js",
+        "test:ctry:json": "node --env-file-if-exists=.env test/resources/countries/countriesJson.js",
+        "test:ctry:dto": "node --env-file-if-exists=.env test/resources/countries/countriesDto.js",
+        "test:cg": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroups.js",
+        "test:cg:map": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsMap.js",
+        "test:cg:json": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsJson.js",
+        "test:cg:dto": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsDto.js",
+        "test:cur": "node --env-file-if-exists=.env test/resources/currencies/currencies.js",
+        "test:cur:map": "node --env-file-if-exists=.env test/resources/currencies/currenciesMap.js",
+        "test:cur:json": "node --env-file-if-exists=.env test/resources/currencies/currenciesJson.js",
+        "test:cur:dto": "node --env-file-if-exists=.env test/resources/currencies/currenciesDto.js",
+        "test:var": "node --env-file-if-exists=.env test/resources/variations/variations.js",
+        "test:var:map": "node --env-file-if-exists=.env test/resources/variations/variationsMap.js",
+        "test:var:json": "node --env-file-if-exists=.env test/resources/variations/variationsJson.js",
+        "test:var:dto": "node --env-file-if-exists=.env test/resources/variations/variationsDto.js",
+        "test:cty": "node --env-file-if-exists=.env test/resources/cities/cities.js",
+        "test:cty:map": "node --env-file-if-exists=.env test/resources/cities/citiesMap.js",
+        "test:cty:json": "node --env-file-if-exists=.env test/resources/cities/citiesJson.js",
+        "test:cty:dto": "node --env-file-if-exists=.env test/resources/cities/citiesDto.js",
+        "test:pg": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGateways.js",
+        "test:pg:map": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysMap.js",
+        "test:pg:json": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysJson.js",
+        "test:pg:dto": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysDto.js",
+        "test:tc": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodes.js",
+        "test:tc:map": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesMap.js",
+        "test:tc:json": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesJson.js",
+        "test:tc:dto": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesDto.js",
+        "test:tp": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfiles.js",
+        "test:tp:map": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesMap.js",
+        "test:tp:json": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesJson.js",
+        "test:tp:dto": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesDto.js",
+        "test:tr": "node --env-file-if-exists=.env test/resources/taxRules/taxRules.js",
+        "test:tr:map": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesMap.js",
+        "test:tr:json": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesJson.js",
+        "test:tr:dto": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesDto.js",
+        "test:tz": "node --env-file-if-exists=.env test/resources/taxZones/taxZones.js",
+        "test:tz:map": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesMap.js",
+        "test:tz:json": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesJson.js",
+        "test:tz:dto": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesDto.js",
+        "test:tst": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettings.js",
+        "test:tst:map": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsMap.js",
+        "test:tst:json": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsJson.js",
+        "test:tst:dto": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsDto.js",
+        "test:tct": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxes.js",
+        "test:tct:map": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesMap.js",
+        "test:tct:json": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesJson.js",
+        "test:tct:dto": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesDto.js",
+        "test:tcp": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfiles.js",
+        "test:tcp:map": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesMap.js",
+        "test:tcp:json": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesJson.js",
+        "test:tcp:dto": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesDto.js",
+        "test:txn": "node --env-file-if-exists=.env test/resources/transactions/transactions.js",
+        "test:txn:map": "node --env-file-if-exists=.env test/resources/transactions/transactionsMap.js",
+        "test:txn:json": "node --env-file-if-exists=.env test/resources/transactions/transactionsJson.js",
+        "test:txn:dto": "node --env-file-if-exists=.env test/resources/transactions/transactionsDto.js",
+        "test:trash": "node --env-file-if-exists=.env test/resources/trash/trash.js",
+        "test:trash:map": "node --env-file-if-exists=.env test/resources/trash/trashMap.js",
+        "test:trash:json": "node --env-file-if-exists=.env test/resources/trash/trashJson.js",
+        "test:trash:dto": "node --env-file-if-exists=.env test/resources/trash/trashDto.js",
+        "test:email": "node --env-file-if-exists=.env test/resources/email/email.js",
+        "test:email:map": "node --env-file-if-exists=.env test/resources/email/emailMap.js",
+        "test:email:json": "node --env-file-if-exists=.env test/resources/email/emailJson.js",
+        "test:email:dto": "node --env-file-if-exists=.env test/resources/email/emailDto.js",
+        "test:cs": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettings.js",
+        "test:cs:map": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsMap.js",
+        "test:cs:json": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsJson.js",
+        "test:cs:dto": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsDto.js",
+        "test:pages": "node --env-file-if-exists=.env test/resources/pages/pages.js",
+        "test:pages:map": "node --env-file-if-exists=.env test/resources/pages/pagesMap.js",
+        "test:pages:json": "node --env-file-if-exists=.env test/resources/pages/pagesJson.js",
+        "test:pages:dto": "node --env-file-if-exists=.env test/resources/pages/pagesDto.js",
+        "types": "tsc -p tsconfig.types.json",
+        "typecheck": "tsc -p tsconfig.types.json --noEmit",
+        "prepare": "npm run types",
+        "prepack": "npm run types",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "keywords": [
+        "webcommander",
+        "ecommerce",
+        "sdk",
+        "rest",
+        "api-client",
+        "oauth2"
+    ],
+    "devDependencies": {
+        "prettier": "^3.9.6",
+        "typescript": "^5.9.3"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

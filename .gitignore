@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# npm pack / publish output
+*.tgz
+
+# TypeScript declarations: `npm run types` builds them, and `prepack` rebuilds them
+# for a published tarball.
+types/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editors
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local-only test scaffolding. The tracked test/ tree is the live QA suite (a suite per
+# resource and response form, plus credentials.js and the auth helper); it calls the real
+# store and is not part of the published package.
+scratch/
+
+# Credentials. A local file is optional, as the variables can come from the
+# environment or a secret manager; it must never be committed.
+.env
+.env.*
+!.env.example

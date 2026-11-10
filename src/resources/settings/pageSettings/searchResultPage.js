@@ -1,6 +1,6 @@
 import {clientCheck, readCallOptions, requirePayload} from '../../callArguments.js';
 import * as searchResultPageUrls from './searchResultPageUrls.js';
-import {ProductPromotion, SearchResultPage} from './searchResultPageDto.js';
+import {ProductPromotion, SearchReindex, SearchResultPage} from './searchResultPageDto.js';
 import {Page} from '../../customers/adminCustomersDto.js';
 
 /** @import {ApiResponse} from '../../../client/apiResponse.js' */
@@ -228,5 +228,20 @@ export function deleteSearchResultPageProductPromotion(client, promotionId, opti
         pathParams: {promotion_id: promotionId},
         raiseOnError,
         responseFormat,
+    });
+}
+
+/**
+ * `POST /admin/search/reindex` — rebuild the store's search index; no body to send. `202` once it has started, with
+ * `{"status": "accepted", "clean": true, "message": ...}`; the run is read with `getSearchSettingsReindexStatus`.
+ * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<SearchReindex>>}
+ */
+export function reindexSearch(client, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendPostRequest(searchResultPageUrls.SEARCH_REINDEX, {
+        raiseOnError,
+        responseFormat,
+        dtoType: SearchReindex,
     });
 }

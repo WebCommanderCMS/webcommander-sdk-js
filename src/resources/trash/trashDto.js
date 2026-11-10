@@ -126,6 +126,39 @@ export class TrashBulkInput extends Dto {
     /** @type {Array<TrashBulkItemInput | null> | null} */ items = this.declared('items');
 }
 
+/**
+ * One link outside the store: the `system`, its `entity` and `externalId`, a `name` and the `reason` it blocks a
+ * permanent delete.
+ */
+export class TrashExternalLink extends Dto {
+    static FIELDS = {
+        system: 'string',
+        entity: 'string',
+        name: 'string',
+        externalId: 'string',
+        reason: 'string',
+    };
+
+    /** @type {string | null} */ system = this.declared('system');
+    /** @type {string | null} */ entity = this.declared('entity');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ externalId = this.declared('externalId');
+    /** @type {string | null} */ reason = this.declared('reason');
+}
+
+/** The external links of one trashed item: its `type` and `id`, and `links`. */
+export class TrashExternalLinks extends Dto {
+    static FIELDS = {
+        type: 'string',
+        id: 'int',
+        links: dtoList(TrashExternalLink),
+    };
+
+    /** @type {string | null} */ type = this.declared('type');
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {Array<TrashExternalLink | null> | null} */ links = this.declared('links');
+}
+
 sealDtoSchema(
     TrashItem,
     Pagination,
@@ -137,4 +170,6 @@ sealDtoSchema(
     TrashBulkDeleteResult,
     TrashBulkItemInput,
     TrashBulkInput,
+    TrashExternalLink,
+    TrashExternalLinks,
 );

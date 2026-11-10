@@ -192,14 +192,14 @@ to return.
 
 ## Resources
 
-The client exposes 46 resources with 349 operations. The [API reference](https://newlify.mintlify.app)
+The client exposes 56 resources with 436 operations. The [API reference](https://newlify.mintlify.app)
 lists the method, path and behaviour of each one.
 
 | Resource                    | Client accessor               | Operations |
 | --------------------------- | ----------------------------- | ---------: |
 | Customers                   | `client.adminCustomers`       |         15 |
 | Aliases                     | `client.aliases`              |          4 |
-| Animation effects settings  | `client.animationEffects`     |          5 |
+| Animation effects settings  | `client.animationEffects`     |          7 |
 | Blog categories             | `client.blogCategories`       |          5 |
 | Blogs                       | `client.blogs`                |         12 |
 | Carts                       | `client.carts`                |          7 |
@@ -212,24 +212,34 @@ lists the method, path and behaviour of each one.
 | Currencies                  | `client.currencies`           |         11 |
 | Customer groups             | `client.customerGroups`       |          9 |
 | Customer portal settings    | `client.customerPortal`       |          5 |
+| Dashboard banners           | `client.dashboardBanners`     |          6 |
+| Dashboard KPIs              | `client.dashboardKpis`        |          3 |
+| Dashboard reports           | `client.dashboardReports`     |          6 |
+| Dashboard sections          | `client.dashboardSections`    |          1 |
+| Dashboards                  | `client.dashboards`           |          5 |
 | Discount profiles           | `client.discountProfiles`     |          7 |
 | Ecommerce settings          | `client.ecommerceSettings`    |          5 |
 | Email                       | `client.email`                |          1 |
+| Gift cards                  | `client.giftCards`            |          1 |
 | Inventory locations         | `client.inventoryLocations`   |         11 |
 | Order custom fields         | `client.orderCustomFields`    |          4 |
 | Order flags                 | `client.orderFlags`           |          7 |
+| Order previews              | `client.orderPreviews`        |          7 |
 | Orders                      | `client.orders`               |         25 |
 | Pages                       | `client.pages`                |         15 |
 | Payment gateways            | `client.paymentGateways`      |          8 |
 | Price display settings      | `client.priceDisplaySettings` |          5 |
 | Product listing settings    | `client.productListing`       |          3 |
 | Product page settings       | `client.productPage`          |          5 |
-| Products                    | `client.products`             |         10 |
-| Search result page settings | `client.searchResultPage`     |         13 |
+| Products                    | `client.products`             |         27 |
+| Search result page settings | `client.searchResultPage`     |         14 |
 | Search settings             | `client.searchSettings`       |          9 |
 | SEO configuration           | `client.seoConfiguration`     |         18 |
 | Shipping classes            | `client.shippingClasses`      |          9 |
 | Shipping methods            | `client.shippingMethods`      |          9 |
+| Shipping profiles           | `client.shippingProfiles`     |         11 |
+| Shipping rates              | `client.shippingRates`        |         10 |
+| Shipping rules              | `client.shippingRules`        |         10 |
 | Shipping settings           | `client.shippingSettings`     |          3 |
 | Shopping cart settings      | `client.shoppingCart`         |          5 |
 | Site settings               | `client.siteSettings`         |          5 |
@@ -238,11 +248,11 @@ lists the method, path and behaviour of each one.
 | Tax custom profiles         | `client.taxCustomProfiles`    |          5 |
 | Tax profiles                | `client.taxProfiles`          |          7 |
 | Tax rules                   | `client.taxRules`             |          7 |
-| Tax settings                | `client.taxSettings`          |          2 |
+| Tax settings                | `client.taxSettings`          |          4 |
 | Tax zones                   | `client.taxZones`             |          7 |
 | Transactions                | `client.transactions`         |          6 |
-| Trash                       | `client.trash`                |          8 |
-| Variations                  | `client.variations`           |         12 |
+| Trash                       | `client.trash`                |          9 |
+| Variations                  | `client.variations`           |         16 |
 
 Each resource module is also importable by name (`import {orders} from '@webcommander/webcommander'`), with its
 typed views in `<resource>Dto` and its path constants in `<resource>Urls`. Every public module also has

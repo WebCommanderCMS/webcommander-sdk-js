@@ -51,12 +51,21 @@ import {
 /** @typedef {BoundModule<typeof import('../resources/settings/seoConfiguration/seoConfiguration.js')>} BoundSeoConfiguration */
 /** @typedef {BoundModule<typeof import('../resources/inventoryLocations/inventoryLocations.js')>} BoundInventoryLocations */
 /** @typedef {BoundModule<typeof import('../resources/shippingMethods/shippingMethods.js')>} BoundShippingMethods */
+/** @typedef {BoundModule<typeof import('../resources/shippingProfiles/shippingProfiles.js')>} BoundShippingProfiles */
+/** @typedef {BoundModule<typeof import('../resources/shippingRates/shippingRates.js')>} BoundShippingRates */
+/** @typedef {BoundModule<typeof import('../resources/shippingRules/shippingRules.js')>} BoundShippingRules */
 /** @typedef {BoundModule<typeof import('../resources/shippingClasses/shippingClasses.js')>} BoundShippingClasses */
 /** @typedef {BoundModule<typeof import('../resources/aliases/aliases.js')>} BoundAliases */
+/** @typedef {BoundModule<typeof import('../resources/orderPreviews/orderPreviews.js')>} BoundOrderPreviews */
 /** @typedef {BoundModule<typeof import('../resources/orders/orders.js')>} BoundOrders */
 /** @typedef {BoundModule<typeof import('../resources/orderCustomFields/orderCustomFields.js')>} BoundOrderCustomFields */
 /** @typedef {BoundModule<typeof import('../resources/blogCategories/blogCategories.js')>} BoundBlogCategories */
 /** @typedef {BoundModule<typeof import('../resources/categories/categories.js')>} BoundCategories */
+/** @typedef {BoundModule<typeof import('../resources/dashboardBanners/dashboardBanners.js')>} BoundDashboardBanners */
+/** @typedef {BoundModule<typeof import('../resources/dashboardKpis/dashboardKpis.js')>} BoundDashboardKpis */
+/** @typedef {BoundModule<typeof import('../resources/dashboardReports/dashboardReports.js')>} BoundDashboardReports */
+/** @typedef {BoundModule<typeof import('../resources/dashboardSections/dashboardSections.js')>} BoundDashboardSections */
+/** @typedef {BoundModule<typeof import('../resources/dashboards/dashboards.js')>} BoundDashboards */
 /** @typedef {BoundModule<typeof import('../resources/discountProfiles/discountProfiles.js')>} BoundDiscountProfiles */
 /** @typedef {BoundModule<typeof import('../resources/blogs/blogs.js')>} BoundBlogs */
 /** @typedef {BoundModule<typeof import('../resources/carts/carts.js')>} BoundCarts */
@@ -77,6 +86,7 @@ import {
 /** @typedef {BoundModule<typeof import('../resources/transactions/transactions.js')>} BoundTransactions */
 /** @typedef {BoundModule<typeof import('../resources/trash/trash.js')>} BoundTrash */
 /** @typedef {BoundModule<typeof import('../resources/email/email.js')>} BoundEmail */
+/** @typedef {BoundModule<typeof import('../resources/giftCards/giftCards.js')>} BoundGiftCards */
 /** @typedef {BoundModule<typeof import('../resources/commonSettings/commonSettings.js')>} BoundCommonSettings */
 /** @typedef {BoundModule<typeof import('../resources/pages/pages.js')>} BoundPages */
 /** @typedef {BoundModule<typeof import('../resources/settings/pageSettings/searchResultPage.js')>} BoundSearchResultPage */
@@ -534,6 +544,21 @@ export class WebCommanderClient {
         return /** @type {any} */ (this.#boundResource('shippingMethods'));
     }
 
+    /** @returns {BoundShippingProfiles} */
+    get shippingProfiles() {
+        return /** @type {any} */ (this.#boundResource('shippingProfiles'));
+    }
+
+    /** @returns {BoundShippingRates} */
+    get shippingRates() {
+        return /** @type {any} */ (this.#boundResource('shippingRates'));
+    }
+
+    /** @returns {BoundShippingRules} */
+    get shippingRules() {
+        return /** @type {any} */ (this.#boundResource('shippingRules'));
+    }
+
     /** @returns {BoundShippingClasses} */
     get shippingClasses() {
         return /** @type {any} */ (this.#boundResource('shippingClasses'));
@@ -542,6 +567,11 @@ export class WebCommanderClient {
     /** @returns {BoundAliases} */
     get aliases() {
         return /** @type {any} */ (this.#boundResource('aliases'));
+    }
+
+    /** @returns {BoundOrderPreviews} */
+    get orderPreviews() {
+        return /** @type {any} */ (this.#boundResource('orderPreviews'));
     }
 
     /** @returns {BoundOrders} */
@@ -562,6 +592,31 @@ export class WebCommanderClient {
     /** @returns {BoundCategories} */
     get categories() {
         return /** @type {any} */ (this.#boundResource('categories'));
+    }
+
+    /** @returns {BoundDashboardBanners} */
+    get dashboardBanners() {
+        return /** @type {any} */ (this.#boundResource('dashboardBanners'));
+    }
+
+    /** @returns {BoundDashboardKpis} */
+    get dashboardKpis() {
+        return /** @type {any} */ (this.#boundResource('dashboardKpis'));
+    }
+
+    /** @returns {BoundDashboardReports} */
+    get dashboardReports() {
+        return /** @type {any} */ (this.#boundResource('dashboardReports'));
+    }
+
+    /** @returns {BoundDashboardSections} */
+    get dashboardSections() {
+        return /** @type {any} */ (this.#boundResource('dashboardSections'));
+    }
+
+    /** @returns {BoundDashboards} */
+    get dashboards() {
+        return /** @type {any} */ (this.#boundResource('dashboards'));
     }
 
     /** @returns {BoundDiscountProfiles} */
@@ -662,6 +717,11 @@ export class WebCommanderClient {
     /** @returns {BoundEmail} */
     get email() {
         return /** @type {any} */ (this.#boundResource('email'));
+    }
+
+    /** @returns {BoundGiftCards} */
+    get giftCards() {
+        return /** @type {any} */ (this.#boundResource('giftCards'));
     }
 
     /** @returns {BoundCommonSettings} */

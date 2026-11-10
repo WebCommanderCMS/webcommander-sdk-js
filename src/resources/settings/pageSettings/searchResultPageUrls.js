@@ -1,3 +1,4 @@
+export const SEARCH_REINDEX = '/api/{api_version}/admin/search/reindex';
 export const SEARCH_RESULT_PAGE = '/api/{api_version}/admin/settings/page_settings/search_result_page';
 export const SEARCH_RESULT_PAGE_SECTION =
     '/api/{api_version}/admin/settings/page_settings/search_result_page/{section}';

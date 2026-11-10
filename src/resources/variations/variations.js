@@ -1,6 +1,8 @@
 import {clientCheck, readCallOptions, requirePayload} from '../callArguments.js';
 import * as variationsUrls from './variationsUrls.js';
 import {
+    ProductVariantDetail,
+    ProductVariantPatchResult,
     ProductVariations,
     ProductVariationsBulkResult,
     ProductVariationsImportResult,
@@ -229,5 +231,75 @@ export function updateProductVariations(client, productId, payload, queryParams 
         raiseOnError,
         responseFormat,
         dtoType: ProductVariationsBulkResult,
+    });
+}
+
+/**
+ * `GET /admin/products/{product_id}/variations/{variation_id}` — read one variant under `variation`. `variation_id` is
+ * a variant's `variation_id`, the `id` the list also carries; it is not the variant's own `product_id`. It reads
+ * `active` where the list reads `available`.
+ * @param {Client} client @param {number|string} productId @param {number|string} variationId a variant's `variation_id`
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<ProductVariantDetail>>}
+ */
+export function getProductVariation(client, productId, variationId, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendGetRequest(variationsUrls.PRODUCT_VARIATION, {
+        pathParams: {product_id: productId, variation_id: variationId},
+        raiseOnError,
+        responseFormat,
+        dtoType: ProductVariantDetail,
+    });
+}
+
+/**
+ * `DELETE /admin/products/{product_id}/variations/{variation_id}` — delete one variant, `204`; a second delete is
+ * `404`. `variation_id` is a variant's `variation_id`.
+ * @param {Client} client @param {number|string} productId @param {number|string} variationId a variant's `variation_id`
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
+ */
+export function deleteProductVariation(client, productId, variationId, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendDeleteRequest(variationsUrls.PRODUCT_VARIATION, {
+        pathParams: {product_id: productId, variation_id: variationId},
+        raiseOnError,
+        responseFormat,
+    });
+}
+
+/**
+ * `PATCH /admin/products/{product_id}/variations/{variation_id}` — change one variant; a bare, partial body. A SKU
+ * another variant holds is `409`. Answered with the variant's ids and codes only; read it back with
+ * `getProductVariation`.
+ * @param {Client} client @param {number|string} productId @param {number|string} variationId a variant's `variation_id`
+ * @param {VariationPayload} payload a `ProductVariantPatchInput`, a mapping or a JSON string
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<ProductVariantPatchResult>>}
+ */
+export function patchProductVariation(client, productId, variationId, payload, options = undefined) {
+    const target = requireClient(client);
+    requirePayload(payload);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendPatchRequest(variationsUrls.PRODUCT_VARIATION, {
+        pathParams: {product_id: productId, variation_id: variationId},
+        jsonBody: payload,
+        raiseOnError,
+        responseFormat,
+        dtoType: ProductVariantPatchResult,
+    });
+}
+
+/**
+ * `DELETE /admin/products/{product_id}/variations` — delete every variant of a product; `204`, also when it has none.
+ * @param {Client} client @param {number|string} productId
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
+ */
+export function deleteProductVariations(client, productId, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendDeleteRequest(variationsUrls.PRODUCT_VARIATIONS, {
+        pathParams: {product_id: productId},
+        raiseOnError,
+        responseFormat,
     });
 }

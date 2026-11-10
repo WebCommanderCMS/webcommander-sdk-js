@@ -11,24 +11,30 @@ export class ProfileReference extends Dto {
     /** @type {string | null} */ name = this.declared('name');
 }
 
-/** The `group_meta` entry: two fields and no `href`, as there is no section endpoint. */
+/** One `group_meta` entry: what the area is, whether it can be written, and its path. */
 export class AreaMeta extends Dto {
     static FIELDS = {
         kind: 'string',
         writable: 'boolean',
+        href: 'string',
     };
 
     /** @type {string | null} */ kind = this.declared('kind');
     /** @type {boolean | null} */ writable = this.declared('writable');
+    /** @type {string | null} */ href = this.declared('href');
 }
 
-/** The `group_meta` block — a single {@link AreaMeta}, keyed by the area itself. */
+/** The `group_meta` block: the settings area and the two collections beside it. */
 export class GroupMeta extends Dto {
     static FIELDS = {
         shippingSettings: AreaMeta,
+        shippingMethods: AreaMeta,
+        shippingClasses: AreaMeta,
     };
 
     /** @type {AreaMeta | null} */ shippingSettings = this.declared('shippingSettings');
+    /** @type {AreaMeta | null} */ shippingMethods = this.declared('shippingMethods');
+    /** @type {AreaMeta | null} */ shippingClasses = this.declared('shippingClasses');
 }
 
 /**
@@ -40,23 +46,23 @@ export class ShippingSettings extends Dto {
 
     static FIELDS = {
         defaultShippingProfile: ProfileReference,
-        enableShippingDefaultTax: 'boolean',
+        applyStoreTaxSettingsToShipping: 'boolean',
         defaultDeliveryProfile: ProfileReference,
-        enableDeliveryDefaultTax: 'boolean',
+        applyStoreTaxSettingsToDelivery: 'boolean',
         shippingTaxProfile: ProfileReference,
         enableShippingClass: 'boolean',
-        enableFlatViewClass: 'boolean',
+        enableClassInFlatView: 'boolean',
         groupMeta: GroupMeta,
         fieldMetadata: 'any',
     };
 
     /** @type {ProfileReference | null} */ defaultShippingProfile = this.declared('defaultShippingProfile');
-    /** @type {boolean | null} */ enableShippingDefaultTax = this.declared('enableShippingDefaultTax');
+    /** @type {boolean | null} */ applyStoreTaxSettingsToShipping = this.declared('applyStoreTaxSettingsToShipping');
     /** @type {ProfileReference | null} */ defaultDeliveryProfile = this.declared('defaultDeliveryProfile');
-    /** @type {boolean | null} */ enableDeliveryDefaultTax = this.declared('enableDeliveryDefaultTax');
+    /** @type {boolean | null} */ applyStoreTaxSettingsToDelivery = this.declared('applyStoreTaxSettingsToDelivery');
     /** @type {ProfileReference | null} */ shippingTaxProfile = this.declared('shippingTaxProfile');
     /** @type {boolean | null} */ enableShippingClass = this.declared('enableShippingClass');
-    /** @type {boolean | null} */ enableFlatViewClass = this.declared('enableFlatViewClass');
+    /** @type {boolean | null} */ enableClassInFlatView = this.declared('enableClassInFlatView');
     /** @type {GroupMeta | null} */ groupMeta = this.declared('groupMeta');
     /** @type {unknown} */ fieldMetadata = this.declared('fieldMetadata');
 }

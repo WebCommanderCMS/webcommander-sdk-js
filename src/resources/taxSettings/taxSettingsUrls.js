@@ -1,1 +1,1 @@
-export const TAX_SETTINGS = '/api/{api_version}/admin/tax/settings';
+export const TAX_SETTINGS = '/api/{api_version}/admin/settings/tax';

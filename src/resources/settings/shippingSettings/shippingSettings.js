@@ -13,7 +13,7 @@ const requireClient = clientCheck(
 );
 
 /**
- * `GET /admin/settings/shipping_settings` — the seven fields, with `group_meta`.
+ * `GET /admin/settings/shipping_settings/general` — the seven fields, with `group_meta`.
  * @param {Client} client @param {Record<string, unknown>} [queryParams] @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<ShippingSettings>>}
  */
@@ -29,7 +29,7 @@ export function getShippingSettings(client, queryParams = undefined, options = u
 }
 
 /**
- * `PATCH /admin/settings/shipping_settings` — partial write, wrapped or bare.
+ * `PATCH /admin/settings/shipping_settings/general` — partial write, wrapped or bare.
  * @param {Client} client @param {ShippingSettingsPayload} payload @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<ShippingSettings>>}
  */
@@ -46,7 +46,7 @@ export function patchShippingSettings(client, payload, options = undefined) {
 }
 
 /**
- * `HEAD /admin/settings/shipping_settings` — `200` with no body.
+ * `HEAD /admin/settings/shipping_settings/general` — `200` with no body.
  * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
  */
 export function headShippingSettings(client, options = undefined) {

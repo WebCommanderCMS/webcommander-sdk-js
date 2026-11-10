@@ -552,12 +552,16 @@ export class ProductReviewer extends Dto {
 }
 
 const REVIEW_PRODUCT_ID_KEY = 'productId';
+const REVIEW_KEY = 'review';
 
 /**
  * One review; `productId` is camel case on the wire, so this type maps that key itself. `comment` and `createdAt` repeat
- * `review` and `date`; `createdAt` carries a `Z`.
+ * `review` and `date`; `createdAt` carries a `Z`. A single review answers under `review`, which inside a row is its
+ * text.
  */
 export class ProductReview extends Dto {
+    static ENVELOPE_KEY = 'review';
+
     static FIELDS = {
         id: 'int',
         productId: 'int',
@@ -594,15 +598,21 @@ export class ProductReview extends Dto {
     /** @param {unknown} body @returns {any} */
     static fromMap(body) {
         const record = /** @type {any} */ (super.fromMap(body));
-        const value = /** @type {Record<string, unknown>} */ (body)[REVIEW_PRODUCT_ID_KEY];
+        const row = /** @type {Record<string, unknown>} */ (body);
+        const inner = row[REVIEW_KEY];
+        const source =
+            inner !== null && typeof inner === 'object' ? /** @type {Record<string, unknown>} */ (inner) : row;
+        const value = source[REVIEW_PRODUCT_ID_KEY];
         record.productId = Number.isInteger(value) ? value : null;
         return record;
     }
 
     /** @returns {Record<string, unknown>} */
     toMap() {
-        const {product_id: productId, ...record} = super.toMap();
-        return productId === undefined ? record : {...record, [REVIEW_PRODUCT_ID_KEY]: productId};
+        const body = super.toMap();
+        const record = /** @type {Record<string, unknown>} */ (body[REVIEW_KEY]);
+        const {product_id: productId, ...rest} = record;
+        return {[REVIEW_KEY]: productId === undefined ? rest : {...rest, [REVIEW_PRODUCT_ID_KEY]: productId}};
     }
 }
 
@@ -1770,6 +1780,609 @@ export class ProductStockInput extends Dto {
     /** @type {Array<ProductStockLocationInput | null> | null} */ locations = this.declared('locations');
 }
 
+/** The count's answer; `count` repeats `total`. */
+export class ProductCount extends Dto {
+    static FIELDS = {
+        total: 'int',
+        count: 'int',
+    };
+
+    /** @type {number | null} */ total = this.declared('total');
+    /** @type {number | null} */ count = this.declared('count');
+}
+
+/** The product that holds a SKU; `status` is `trashed` for one in the trash. */
+export class ProductSkuHolder extends Dto {
+    static FIELDS = {
+        id: 'int',
+        name: 'string',
+        status: 'string',
+    };
+
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ status = this.declared('status');
+}
+
+/**
+ * A SKU's verdict: `available` and `isExist` are opposites, `product` and `id` name the holder and are `null` or absent
+ * when the SKU is free. A variant's SKU names the variant's own product.
+ */
+export class ProductSkuCheck extends Dto {
+    static FIELDS = {
+        available: 'boolean',
+        isExist: 'boolean',
+        product: ProductSkuHolder,
+        id: 'int',
+    };
+
+    /** @type {boolean | null} */ available = this.declared('available');
+    /** @type {boolean | null} */ isExist = this.declared('isExist');
+    /** @type {ProductSkuHolder | null} */ product = this.declared('product');
+    /** @type {number | null} */ id = this.declared('id');
+}
+
+/** One row of a special listing: a product's storefront prices. */
+export class ProductSpecial extends Dto {
+    static FIELDS = {
+        id: 'int',
+        sku: 'string',
+        name: 'string',
+        image: 'string',
+        basePrice: 'float',
+        isOnSale: 'boolean',
+        onSaleAmountType: 'string',
+        effectivePrice: 'float',
+        actualBasePrice: 'float',
+        onSaleAmount: 'float',
+        expectToPayPrice: 'float',
+        expectToPayPriceWithTax: 'float',
+        taxExclusiveBasePrice: 'float',
+        taxExclusiveSalePrice: 'float',
+        tax: 'float',
+        previousPriceToDisplay: 'float',
+        actualPriceToDisplay: 'float',
+        salePrice: 'float',
+        updated: 'string',
+        url: 'string',
+        summary: 'string',
+        description: 'string',
+    };
+
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {string | null} */ sku = this.declared('sku');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ image = this.declared('image');
+    /** @type {number | null} */ basePrice = this.declared('basePrice');
+    /** @type {boolean | null} */ isOnSale = this.declared('isOnSale');
+    /** @type {string | null} */ onSaleAmountType = this.declared('onSaleAmountType');
+    /** @type {number | null} */ effectivePrice = this.declared('effectivePrice');
+    /** @type {number | null} */ actualBasePrice = this.declared('actualBasePrice');
+    /** @type {number | null} */ onSaleAmount = this.declared('onSaleAmount');
+    /** @type {number | null} */ expectToPayPrice = this.declared('expectToPayPrice');
+    /** @type {number | null} */ expectToPayPriceWithTax = this.declared('expectToPayPriceWithTax');
+    /** @type {number | null} */ taxExclusiveBasePrice = this.declared('taxExclusiveBasePrice');
+    /** @type {number | null} */ taxExclusiveSalePrice = this.declared('taxExclusiveSalePrice');
+    /** @type {number | null} */ tax = this.declared('tax');
+    /** @type {number | null} */ previousPriceToDisplay = this.declared('previousPriceToDisplay');
+    /** @type {number | null} */ actualPriceToDisplay = this.declared('actualPriceToDisplay');
+    /** @type {number | null} */ salePrice = this.declared('salePrice');
+    /** @type {string | null} */ updated = this.declared('updated');
+    /** @type {string | null} */ url = this.declared('url');
+    /** @type {string | null} */ summary = this.declared('summary');
+    /** @type {string | null} */ description = this.declared('description');
+}
+
+/**
+ * A special listing. `max` is the page size applied; `status` is `success` on a per-customer answer with no rows, and
+ * absent otherwise.
+ */
+export class ProductSpecialPage extends Dto {
+    static FIELDS = {
+        status: 'string',
+        total: 'int',
+        max: 'int',
+        offset: 'int',
+        products: dtoList(ProductSpecial),
+        pagination: Pagination,
+    };
+
+    /** @type {string | null} */ status = this.declared('status');
+    /** @type {number | null} */ total = this.declared('total');
+    /** @type {number | null} */ max = this.declared('max');
+    /** @type {number | null} */ offset = this.declared('offset');
+    /** @type {Array<ProductSpecial | null> | null} */ products = this.declared('products');
+    /** @type {Pagination | null} */ pagination = this.declared('pagination');
+}
+
+/** The bulk delete's body, no envelope: `ids` is required and must not be empty. */
+export class ProductsBulkDeleteInput extends Dto {
+    static FIELDS = {
+        ids: dtoList('int'),
+    };
+
+    /** @type {Array<number | null> | null} */ ids = this.declared('ids');
+}
+
+/** One id the bulk delete did not trash; `reason` is `not_found` for an unknown id. */
+export class ProductBulkDeleteError extends Dto {
+    static FIELDS = {
+        id: 'int',
+        reason: 'string',
+    };
+
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {string | null} */ reason = this.declared('reason');
+}
+
+/** The bulk delete's answer, `200` even when an id failed: counts, and the failed ids. */
+export class ProductsBulkDeleteResult extends Dto {
+    static FIELDS = {
+        deleted: 'int',
+        failed: 'int',
+        errors: dtoList(ProductBulkDeleteError),
+    };
+
+    /** @type {number | null} */ deleted = this.declared('deleted');
+    /** @type {number | null} */ failed = this.declared('failed');
+    /** @type {Array<ProductBulkDeleteError | null> | null} */ errors = this.declared('errors');
+}
+
+/** One product's reviews; the listing has no paging block. */
+export class ProductReviewList extends Dto {
+    static FIELDS = {
+        reviews: dtoList(ProductReview),
+    };
+
+    /** @type {Array<ProductReview | null> | null} */ reviews = this.declared('reviews');
+}
+
+/** The review moderation body, no envelope; `status` is `pending` or `approved`. */
+export class ProductReviewPatchInput extends Dto {
+    static FIELDS = {
+        status: 'string',
+        rating: 'float',
+        comment: 'string',
+    };
+
+    /** @type {string | null} */ status = this.declared('status');
+    /** @type {number | null} */ rating = this.declared('rating');
+    /** @type {string | null} */ comment = this.declared('comment');
+}
+
+/** One image to store: `filename` and its `base64` content. */
+export class ProductImageFileInput extends Dto {
+    static FIELDS = {
+        filename: 'string',
+        base64: 'string',
+    };
+
+    /** @type {string | null} */ filename = this.declared('filename');
+    /** @type {string | null} */ base64 = this.declared('base64');
+}
+
+/** The `image_and_video` block of an image upload. */
+export class ProductImageAndVideoInput extends Dto {
+    static FIELDS = {
+        images: dtoList(ProductImageFileInput),
+    };
+
+    /** @type {Array<ProductImageFileInput | null> | null} */ images = this.declared('images');
+}
+
+/** The image upload's body, `{"product": {"image_and_video": {"images": [...]}}}`. */
+export class ProductImageUploadInput extends Dto {
+    static ENVELOPE_KEY = 'product';
+
+    static FIELDS = {
+        imageAndVideo: ProductImageAndVideoInput,
+    };
+
+    /** @type {ProductImageAndVideoInput | null} */ imageAndVideo = this.declared('imageAndVideo');
+}
+
+/** What `createProductImage` answers: `product` holds the files just stored, `transactionNo` is the product's own. */
+export class ProductMediaUploaded extends Dto {
+    static FIELDS = {
+        product: ProductImageAndVideo,
+        transactionNo: 'string',
+    };
+
+    /** @type {ProductImageAndVideo | null} */ product = this.declared('product');
+    /** @type {string | null} */ transactionNo = this.declared('transactionNo');
+}
+
+/**
+ * The media upload's body, no envelope: `type` (only `images` is accepted), `filename` and `content`, base64 or a
+ * `data:` URI, and an optional 1-based `position`.
+ */
+export class ProductMediaUploadInput extends Dto {
+    static FIELDS = {
+        type: 'string',
+        filename: 'string',
+        content: 'string',
+        position: 'int',
+    };
+
+    /** @type {string | null} */ type = this.declared('type');
+    /** @type {string | null} */ filename = this.declared('filename');
+    /** @type {string | null} */ content = this.declared('content');
+    /** @type {number | null} */ position = this.declared('position');
+}
+
+/** The stock figures a top-up writes. */
+export class ProductInventoryStockInput extends Dto {
+    static FIELDS = {
+        trackInventory: 'boolean',
+        availableStock: 'int',
+        lowLevelStock: 'int',
+    };
+
+    /** @type {boolean | null} */ trackInventory = this.declared('trackInventory');
+    /** @type {number | null} */ availableStock = this.declared('availableStock');
+    /** @type {number | null} */ lowLevelStock = this.declared('lowLevelStock');
+}
+
+/** The top-up's body, `{"product": {"product_pricing_and_stock": {...}}}`. */
+export class ProductInventoryInput extends Dto {
+    static ENVELOPE_KEY = 'product';
+
+    static FIELDS = {
+        productPricingAndStock: ProductInventoryStockInput,
+    };
+
+    /** @type {ProductInventoryStockInput | null} */ productPricingAndStock = this.declared('productPricingAndStock');
+}
+
+/**
+ * The top-up's answer. `transactionNo` is the product's own from before the write, `null` on its first top-up, though
+ * the header is stored on the product by then.
+ */
+export class ProductInventoryResult extends Dto {
+    static FIELDS = {
+        status: 'string',
+        message: 'string',
+        transactionNo: 'string',
+    };
+
+    /** @type {string | null} */ status = this.declared('status');
+    /** @type {string | null} */ message = this.declared('message');
+    /** @type {string | null} */ transactionNo = this.declared('transactionNo');
+}
+
+/** The media order body, no envelope: `type` `images` and every image's `id` once, in the order wanted. */
+export class ProductMediaOrderInput extends Dto {
+    static FIELDS = {
+        type: 'string',
+        ids: dtoList('int'),
+    };
+
+    /** @type {string | null} */ type = this.declared('type');
+    /** @type {Array<number | null> | null} */ ids = this.declared('ids');
+}
+
+/** The media order's answer: the product's images in their new order. */
+export class ProductMediaOrder extends Dto {
+    static FIELDS = {
+        images: dtoList(ProductMediaImage),
+    };
+
+    /** @type {Array<ProductMediaImage | null> | null} */ images = this.declared('images');
+}
+
+/** The image move body, no envelope: the 1-based `position`, the only field it takes. */
+export class ProductMediaImagePatchInput extends Dto {
+    static FIELDS = {
+        position: 'int',
+    };
+
+    /** @type {number | null} */ position = this.declared('position');
+}
+
+/** The robots and canonical URL settings. */
+export class ProductSeoAdvancedSettings extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        robotsMeta: 'string',
+        canonicalUrl: 'string',
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {string | null} */ robotsMeta = this.declared('robotsMeta');
+    /** @type {string | null} */ canonicalUrl = this.declared('canonicalUrl');
+}
+
+/** Which Google Analytics events the product page sends. */
+export class ProductSeoGoogleAnalyticsEvents extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        viewItem: 'boolean',
+        viewItemList: 'boolean',
+        viewCart: 'boolean',
+        addToWishList: 'boolean',
+        removeFromCart: 'boolean',
+        beginCheckout: 'boolean',
+        addShippingInfo: 'boolean',
+        addPaymentInfo: 'boolean',
+        purchase: 'boolean',
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {boolean | null} */ viewItem = this.declared('viewItem');
+    /** @type {boolean | null} */ viewItemList = this.declared('viewItemList');
+    /** @type {boolean | null} */ viewCart = this.declared('viewCart');
+    /** @type {boolean | null} */ addToWishList = this.declared('addToWishList');
+    /** @type {boolean | null} */ removeFromCart = this.declared('removeFromCart');
+    /** @type {boolean | null} */ beginCheckout = this.declared('beginCheckout');
+    /** @type {boolean | null} */ addShippingInfo = this.declared('addShippingInfo');
+    /** @type {boolean | null} */ addPaymentInfo = this.declared('addPaymentInfo');
+    /** @type {boolean | null} */ purchase = this.declared('purchase');
+}
+
+/** Google Analytics on the product page. */
+export class ProductSeoGoogleAnalytics extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        measurementId: 'string',
+        events: ProductSeoGoogleAnalyticsEvents,
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {string | null} */ measurementId = this.declared('measurementId');
+    /** @type {ProductSeoGoogleAnalyticsEvents | null} */ events = this.declared('events');
+}
+
+/** Which Facebook Pixel events the product page sends. */
+export class ProductSeoFacebookPixelEvents extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        search: 'boolean',
+        addToCart: 'boolean',
+        addToWishList: 'boolean',
+        initiateCheckout: 'boolean',
+        addPaymentInfo: 'boolean',
+        purchase: 'boolean',
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {boolean | null} */ search = this.declared('search');
+    /** @type {boolean | null} */ addToCart = this.declared('addToCart');
+    /** @type {boolean | null} */ addToWishList = this.declared('addToWishList');
+    /** @type {boolean | null} */ initiateCheckout = this.declared('initiateCheckout');
+    /** @type {boolean | null} */ addPaymentInfo = this.declared('addPaymentInfo');
+    /** @type {boolean | null} */ purchase = this.declared('purchase');
+}
+
+/** The Facebook Pixel on the product page. */
+export class ProductSeoFacebookPixel extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        pixelId: 'string',
+        events: ProductSeoFacebookPixelEvents,
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {string | null} */ pixelId = this.declared('pixelId');
+    /** @type {ProductSeoFacebookPixelEvents | null} */ events = this.declared('events');
+}
+
+/** The Google Ads conversion the product page reports. */
+export class ProductSeoGoogleAds extends Dto {
+    static FIELDS = {
+        conversionId: 'string',
+        conversionLabel: 'string',
+    };
+
+    /** @type {string | null} */ conversionId = this.declared('conversionId');
+    /** @type {string | null} */ conversionLabel = this.declared('conversionLabel');
+}
+
+/** The product page's analytics settings. */
+export class ProductSeoAnalytics extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        platform: 'string',
+        googleAnalytics: ProductSeoGoogleAnalytics,
+        facebookPixel: ProductSeoFacebookPixel,
+        googleAds: ProductSeoGoogleAds,
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {string | null} */ platform = this.declared('platform');
+    /** @type {ProductSeoGoogleAnalytics | null} */ googleAnalytics = this.declared('googleAnalytics');
+    /** @type {ProductSeoFacebookPixel | null} */ facebookPixel = this.declared('facebookPixel');
+    /** @type {ProductSeoGoogleAds | null} */ googleAds = this.declared('googleAds');
+}
+
+/** One custom code block and whether it is on. */
+export class ProductSeoCode extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        code: 'string',
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {string | null} */ code = this.declared('code');
+}
+
+/** The custom code added to the product page's header and footer. */
+export class ProductSeoCustomCode extends Dto {
+    static FIELDS = {
+        header: ProductSeoCode,
+        footer: ProductSeoCode,
+    };
+
+    /** @type {ProductSeoCode | null} */ header = this.declared('header');
+    /** @type {ProductSeoCode | null} */ footer = this.declared('footer');
+}
+
+/** The title, description and image one network shows for the product. */
+export class ProductSeoSocialCard extends Dto {
+    static FIELDS = {
+        title: 'string',
+        description: 'string',
+        imageUrl: 'string',
+    };
+
+    /** @type {string | null} */ title = this.declared('title');
+    /** @type {string | null} */ description = this.declared('description');
+    /** @type {string | null} */ imageUrl = this.declared('imageUrl');
+}
+
+/** The product's social card, and one per network. */
+export class ProductSeoSocial extends Dto {
+    static FIELDS = {
+        title: 'string',
+        description: 'string',
+        imageUrl: 'string',
+        facebook: ProductSeoSocialCard,
+        twitter: ProductSeoSocialCard,
+        linkedin: ProductSeoSocialCard,
+    };
+
+    /** @type {string | null} */ title = this.declared('title');
+    /** @type {string | null} */ description = this.declared('description');
+    /** @type {string | null} */ imageUrl = this.declared('imageUrl');
+    /** @type {ProductSeoSocialCard | null} */ facebook = this.declared('facebook');
+    /** @type {ProductSeoSocialCard | null} */ twitter = this.declared('twitter');
+    /** @type {ProductSeoSocialCard | null} */ linkedin = this.declared('linkedin');
+}
+
+/** What the product offers AI search; each field is `null` until set. */
+export class ProductSeoAiVisibility extends Dto {
+    static FIELDS = {
+        structuredAttributes: 'any',
+        productFaq: 'any',
+        citabilityScore: 'any',
+        jsonLd: 'any',
+    };
+
+    /** @type {any} */ structuredAttributes = this.declared('structuredAttributes');
+    /** @type {any} */ productFaq = this.declared('productFaq');
+    /** @type {any} */ citabilityScore = this.declared('citabilityScore');
+    /** @type {any} */ jsonLd = this.declared('jsonLd');
+}
+
+/** A product's SEO sub-resource, under `seo`. */
+export class ProductSeo extends Dto {
+    static ENVELOPE_KEY = 'seo';
+
+    static FIELDS = {
+        urlHandle: 'string',
+        title: 'string',
+        description: 'string',
+        advancedSettings: ProductSeoAdvancedSettings,
+        analytics: ProductSeoAnalytics,
+        customCode: ProductSeoCustomCode,
+        social: ProductSeoSocial,
+        aiVisibility: ProductSeoAiVisibility,
+    };
+
+    /** @type {string | null} */ urlHandle = this.declared('urlHandle');
+    /** @type {string | null} */ title = this.declared('title');
+    /** @type {string | null} */ description = this.declared('description');
+    /** @type {ProductSeoAdvancedSettings | null} */ advancedSettings = this.declared('advancedSettings');
+    /** @type {ProductSeoAnalytics | null} */ analytics = this.declared('analytics');
+    /** @type {ProductSeoCustomCode | null} */ customCode = this.declared('customCode');
+    /** @type {ProductSeoSocial | null} */ social = this.declared('social');
+    /** @type {ProductSeoAiVisibility | null} */ aiVisibility = this.declared('aiVisibility');
+}
+
+/** A product's stock figure and low-stock level, with whether tracking is on. */
+export class ProductStockTracking extends Dto {
+    static FIELDS = {
+        enabled: 'boolean',
+        availableStock: 'int',
+        lowStockLevel: 'int',
+    };
+
+    /** @type {boolean | null} */ enabled = this.declared('enabled');
+    /** @type {number | null} */ availableStock = this.declared('availableStock');
+    /** @type {number | null} */ lowStockLevel = this.declared('lowStockLevel');
+}
+
+/** The stock block of the stock patch's answer. */
+export class ProductStockSummary extends Dto {
+    static FIELDS = {
+        tracking: ProductStockTracking,
+        multiLocationEnabled: 'boolean',
+        locations: dtoList(ProductStockLocation),
+        variations: dtoList(ProductStockVariation),
+    };
+
+    /** @type {ProductStockTracking | null} */ tracking = this.declared('tracking');
+    /** @type {boolean | null} */ multiLocationEnabled = this.declared('multiLocationEnabled');
+    /** @type {Array<ProductStockLocation | null> | null} */ locations = this.declared('locations');
+    /** @type {Array<ProductStockVariation | null> | null} */ variations = this.declared('variations');
+}
+
+/** The admin who made a stock change. */
+export class ProductStockAdjustmentUser extends Dto {
+    static FIELDS = {
+        id: 'int',
+        name: 'string',
+    };
+
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {string | null} */ name = this.declared('name');
+}
+
+/** One stock change; `delta` is the new figure minus the old. */
+export class ProductStockAdjustment extends Dto {
+    static FIELDS = {
+        id: 'int',
+        delta: 'int',
+        note: 'string',
+        transactionNo: 'string',
+        createdBy: ProductStockAdjustmentUser,
+        createdAt: 'string',
+    };
+
+    /** @type {number | null} */ id = this.declared('id');
+    /** @type {number | null} */ delta = this.declared('delta');
+    /** @type {string | null} */ note = this.declared('note');
+    /** @type {string | null} */ transactionNo = this.declared('transactionNo');
+    /** @type {ProductStockAdjustmentUser | null} */ createdBy = this.declared('createdBy');
+    /** @type {string | null} */ createdAt = this.declared('createdAt');
+}
+
+/** The stock patch's body, no envelope. `tracking` merges; `locations` sets the stock per location; `note` and `transactionNo` go on the adjustment. */
+export class ProductStockPatchInput extends Dto {
+    static FIELDS = {
+        tracking: ProductStockTracking,
+        locations: dtoList(ProductStockLocationInput),
+        note: 'string',
+        transactionNo: 'string',
+    };
+
+    /** @type {ProductStockTracking | null} */ tracking = this.declared('tracking');
+    /** @type {Array<ProductStockLocationInput | null> | null} */ locations = this.declared('locations');
+    /** @type {string | null} */ note = this.declared('note');
+    /** @type {string | null} */ transactionNo = this.declared('transactionNo');
+}
+
+/** The stock patch's answer: the stock now, and the adjustment it recorded. */
+export class ProductStockPatchResult extends Dto {
+    static FIELDS = {
+        stock: ProductStockSummary,
+        adjustment: ProductStockAdjustment,
+    };
+
+    /** @type {ProductStockSummary | null} */ stock = this.declared('stock');
+    /** @type {ProductStockAdjustment | null} */ adjustment = this.declared('adjustment');
+}
+
+/** One page of a product's stock history. */
+export class ProductStockAdjustmentPage extends Dto {
+    static FIELDS = {
+        adjustments: dtoList(ProductStockAdjustment),
+        pagination: Pagination,
+    };
+
+    /** @type {Array<ProductStockAdjustment | null> | null} */ adjustments = this.declared('adjustments');
+    /** @type {Pagination | null} */ pagination = this.declared('pagination');
+}
+
 sealDtoSchema(
     ProductUrls,
     ProductNamedReference,
@@ -1848,4 +2461,45 @@ sealDtoSchema(
     ProductStock,
     ProductStockLocationInput,
     ProductStockInput,
+    ProductCount,
+    ProductSkuHolder,
+    ProductSkuCheck,
+    ProductSpecial,
+    ProductSpecialPage,
+    ProductsBulkDeleteInput,
+    ProductBulkDeleteError,
+    ProductsBulkDeleteResult,
+    ProductReviewList,
+    ProductReviewPatchInput,
+    ProductImageFileInput,
+    ProductImageAndVideoInput,
+    ProductImageUploadInput,
+    ProductMediaUploaded,
+    ProductMediaUploadInput,
+    ProductInventoryStockInput,
+    ProductInventoryInput,
+    ProductInventoryResult,
+    ProductMediaOrderInput,
+    ProductMediaOrder,
+    ProductMediaImagePatchInput,
+    ProductSeoAdvancedSettings,
+    ProductSeoGoogleAnalyticsEvents,
+    ProductSeoGoogleAnalytics,
+    ProductSeoFacebookPixelEvents,
+    ProductSeoFacebookPixel,
+    ProductSeoGoogleAds,
+    ProductSeoAnalytics,
+    ProductSeoCode,
+    ProductSeoCustomCode,
+    ProductSeoSocialCard,
+    ProductSeoSocial,
+    ProductSeoAiVisibility,
+    ProductSeo,
+    ProductStockTracking,
+    ProductStockSummary,
+    ProductStockAdjustmentUser,
+    ProductStockAdjustment,
+    ProductStockPatchInput,
+    ProductStockPatchResult,
+    ProductStockAdjustmentPage,
 );

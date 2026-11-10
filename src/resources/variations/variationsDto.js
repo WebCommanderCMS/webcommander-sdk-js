@@ -143,6 +143,7 @@ export class ProductVariantPricing extends Dto {
         basePrice: 'float',
         costPrice: 'float',
         salePrice: 'float',
+        compareAtPrice: 'float',
         isOnSale: 'boolean',
         saleAmountType: 'string',
         hidePrice: 'boolean',
@@ -154,6 +155,7 @@ export class ProductVariantPricing extends Dto {
     /** @type {number | null} */ basePrice = this.declared('basePrice');
     /** @type {number | null} */ costPrice = this.declared('costPrice');
     /** @type {number | null} */ salePrice = this.declared('salePrice');
+    /** @type {number | null} */ compareAtPrice = this.declared('compareAtPrice');
     /** @type {boolean | null} */ isOnSale = this.declared('isOnSale');
     /** @type {string | null} */ saleAmountType = this.declared('saleAmountType');
     /** @type {boolean | null} */ hidePrice = this.declared('hidePrice');
@@ -449,6 +451,107 @@ export class ProductVariationsImportResult extends Dto {
     /** @type {number | null} */ totalVariants = this.declared('totalVariants');
 }
 
+/**
+ * One variant read alone, under `variation`. It is on or off as `active`, where the list and the bulk write say
+ * `available`; `options` name one label per type.
+ */
+export class ProductVariantDetail extends Dto {
+    static ENVELOPE_KEY = 'variation';
+
+    static FIELDS = {
+        variationId: 'int',
+        name: 'string',
+        sku: 'string',
+        customSku: 'string',
+        barcode: 'string',
+        countryOfOrigin: 'string',
+        hsCode: 'string',
+        active: 'boolean',
+        options: dtoList(ProductVariantOptionReference),
+        pricing: ProductVariantPricing,
+        inventory: ProductVariantInventory,
+        ordering: ProductVariantOrdering,
+        transactionNo: 'string',
+        url: 'string',
+    };
+
+    /** @type {number | null} */ variationId = this.declared('variationId');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ sku = this.declared('sku');
+    /** @type {string | null} */ customSku = this.declared('customSku');
+    /** @type {string | null} */ barcode = this.declared('barcode');
+    /** @type {string | null} */ countryOfOrigin = this.declared('countryOfOrigin');
+    /** @type {string | null} */ hsCode = this.declared('hsCode');
+    /** @type {boolean | null} */ active = this.declared('active');
+    /** @type {Array<ProductVariantOptionReference | null> | null} */ options = this.declared('options');
+    /** @type {ProductVariantPricing | null} */ pricing = this.declared('pricing');
+    /** @type {ProductVariantInventory | null} */ inventory = this.declared('inventory');
+    /** @type {ProductVariantOrdering | null} */ ordering = this.declared('ordering');
+    /** @type {string | null} */ transactionNo = this.declared('transactionNo');
+    /** @type {string | null} */ url = this.declared('url');
+}
+
+/** The single-variant patch's body, no envelope; partial. The variant is turned on or off as `available`. */
+export class ProductVariantPatchInput extends Dto {
+    static FIELDS = {
+        available: 'boolean',
+        name: 'string',
+        sku: 'string',
+        customSku: 'string',
+        barcode: 'string',
+        countryOfOrigin: 'string',
+        hsCode: 'string',
+        pricing: ProductVariantPricing,
+        inventory: ProductVariantInventory,
+        ordering: ProductVariantOrdering,
+    };
+
+    /** @type {boolean | null} */ available = this.declared('available');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ sku = this.declared('sku');
+    /** @type {string | null} */ customSku = this.declared('customSku');
+    /** @type {string | null} */ barcode = this.declared('barcode');
+    /** @type {string | null} */ countryOfOrigin = this.declared('countryOfOrigin');
+    /** @type {string | null} */ hsCode = this.declared('hsCode');
+    /** @type {ProductVariantPricing | null} */ pricing = this.declared('pricing');
+    /** @type {ProductVariantInventory | null} */ inventory = this.declared('inventory');
+    /** @type {ProductVariantOrdering | null} */ ordering = this.declared('ordering');
+}
+
+/** The variant as the single-variant patch answers it: its ids and codes. */
+export class ProductVariantPatched extends Dto {
+    static FIELDS = {
+        variationId: 'int',
+        name: 'string',
+        sku: 'string',
+        customSku: 'string',
+        barcode: 'string',
+        countryOfOrigin: 'string',
+        hsCode: 'string',
+    };
+
+    /** @type {number | null} */ variationId = this.declared('variationId');
+    /** @type {string | null} */ name = this.declared('name');
+    /** @type {string | null} */ sku = this.declared('sku');
+    /** @type {string | null} */ customSku = this.declared('customSku');
+    /** @type {string | null} */ barcode = this.declared('barcode');
+    /** @type {string | null} */ countryOfOrigin = this.declared('countryOfOrigin');
+    /** @type {string | null} */ hsCode = this.declared('hsCode');
+}
+
+/** The single-variant patch's answer: `status`, `message` and the `variation`. */
+export class ProductVariantPatchResult extends Dto {
+    static FIELDS = {
+        status: 'string',
+        message: 'string',
+        variation: ProductVariantPatched,
+    };
+
+    /** @type {string | null} */ status = this.declared('status');
+    /** @type {string | null} */ message = this.declared('message');
+    /** @type {ProductVariantPatched | null} */ variation = this.declared('variation');
+}
+
 sealDtoSchema(
     VariationOptionImage,
     VariationOption,
@@ -475,4 +578,8 @@ sealDtoSchema(
     ProductVariationGroupInput,
     ProductVariationsImportInput,
     ProductVariationsImportResult,
+    ProductVariantDetail,
+    ProductVariantPatchInput,
+    ProductVariantPatched,
+    ProductVariantPatchResult,
 );

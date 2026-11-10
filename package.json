@@ -1,6 +1,6 @@
 {
     "name": "@webcommander/webcommander",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "JavaScript SDK for the WebCommander v4 REST API.",
     "type": "module",
     "license": "MIT",
@@ -143,6 +143,42 @@
             "types": "./types/resources/shippingMethods/shippingMethodsUrls.d.ts",
             "default": "./src/resources/shippingMethods/shippingMethodsUrls.js"
         },
+        "./resources/shippingProfiles/shippingProfiles": {
+            "types": "./types/resources/shippingProfiles/shippingProfiles.d.ts",
+            "default": "./src/resources/shippingProfiles/shippingProfiles.js"
+        },
+        "./resources/shippingProfiles/shippingProfilesDto": {
+            "types": "./types/resources/shippingProfiles/shippingProfilesDto.d.ts",
+            "default": "./src/resources/shippingProfiles/shippingProfilesDto.js"
+        },
+        "./resources/shippingProfiles/shippingProfilesUrls": {
+            "types": "./types/resources/shippingProfiles/shippingProfilesUrls.d.ts",
+            "default": "./src/resources/shippingProfiles/shippingProfilesUrls.js"
+        },
+        "./resources/shippingRates/shippingRates": {
+            "types": "./types/resources/shippingRates/shippingRates.d.ts",
+            "default": "./src/resources/shippingRates/shippingRates.js"
+        },
+        "./resources/shippingRates/shippingRatesDto": {
+            "types": "./types/resources/shippingRates/shippingRatesDto.d.ts",
+            "default": "./src/resources/shippingRates/shippingRatesDto.js"
+        },
+        "./resources/shippingRates/shippingRatesUrls": {
+            "types": "./types/resources/shippingRates/shippingRatesUrls.d.ts",
+            "default": "./src/resources/shippingRates/shippingRatesUrls.js"
+        },
+        "./resources/shippingRules/shippingRules": {
+            "types": "./types/resources/shippingRules/shippingRules.d.ts",
+            "default": "./src/resources/shippingRules/shippingRules.js"
+        },
+        "./resources/shippingRules/shippingRulesDto": {
+            "types": "./types/resources/shippingRules/shippingRulesDto.d.ts",
+            "default": "./src/resources/shippingRules/shippingRulesDto.js"
+        },
+        "./resources/shippingRules/shippingRulesUrls": {
+            "types": "./types/resources/shippingRules/shippingRulesUrls.d.ts",
+            "default": "./src/resources/shippingRules/shippingRulesUrls.js"
+        },
         "./resources/shippingClasses/shippingClasses": {
             "types": "./types/resources/shippingClasses/shippingClasses.d.ts",
             "default": "./src/resources/shippingClasses/shippingClasses.js"
@@ -166,6 +202,18 @@
         "./resources/aliases/aliasesUrls": {
             "types": "./types/resources/aliases/aliasesUrls.d.ts",
             "default": "./src/resources/aliases/aliasesUrls.js"
+        },
+        "./resources/orderPreviews/orderPreviews": {
+            "types": "./types/resources/orderPreviews/orderPreviews.d.ts",
+            "default": "./src/resources/orderPreviews/orderPreviews.js"
+        },
+        "./resources/orderPreviews/orderPreviewsDto": {
+            "types": "./types/resources/orderPreviews/orderPreviewsDto.d.ts",
+            "default": "./src/resources/orderPreviews/orderPreviewsDto.js"
+        },
+        "./resources/orderPreviews/orderPreviewsUrls": {
+            "types": "./types/resources/orderPreviews/orderPreviewsUrls.d.ts",
+            "default": "./src/resources/orderPreviews/orderPreviewsUrls.js"
         },
         "./resources/orders/orders": {
             "types": "./types/resources/orders/orders.d.ts",
@@ -214,6 +262,66 @@
         "./resources/categories/categoriesUrls": {
             "types": "./types/resources/categories/categoriesUrls.d.ts",
             "default": "./src/resources/categories/categoriesUrls.js"
+        },
+        "./resources/dashboardBanners/dashboardBanners": {
+            "types": "./types/resources/dashboardBanners/dashboardBanners.d.ts",
+            "default": "./src/resources/dashboardBanners/dashboardBanners.js"
+        },
+        "./resources/dashboardBanners/dashboardBannersDto": {
+            "types": "./types/resources/dashboardBanners/dashboardBannersDto.d.ts",
+            "default": "./src/resources/dashboardBanners/dashboardBannersDto.js"
+        },
+        "./resources/dashboardBanners/dashboardBannersUrls": {
+            "types": "./types/resources/dashboardBanners/dashboardBannersUrls.d.ts",
+            "default": "./src/resources/dashboardBanners/dashboardBannersUrls.js"
+        },
+        "./resources/dashboardKpis/dashboardKpis": {
+            "types": "./types/resources/dashboardKpis/dashboardKpis.d.ts",
+            "default": "./src/resources/dashboardKpis/dashboardKpis.js"
+        },
+        "./resources/dashboardKpis/dashboardKpisDto": {
+            "types": "./types/resources/dashboardKpis/dashboardKpisDto.d.ts",
+            "default": "./src/resources/dashboardKpis/dashboardKpisDto.js"
+        },
+        "./resources/dashboardKpis/dashboardKpisUrls": {
+            "types": "./types/resources/dashboardKpis/dashboardKpisUrls.d.ts",
+            "default": "./src/resources/dashboardKpis/dashboardKpisUrls.js"
+        },
+        "./resources/dashboardReports/dashboardReports": {
+            "types": "./types/resources/dashboardReports/dashboardReports.d.ts",
+            "default": "./src/resources/dashboardReports/dashboardReports.js"
+        },
+        "./resources/dashboardReports/dashboardReportsDto": {
+            "types": "./types/resources/dashboardReports/dashboardReportsDto.d.ts",
+            "default": "./src/resources/dashboardReports/dashboardReportsDto.js"
+        },
+        "./resources/dashboardReports/dashboardReportsUrls": {
+            "types": "./types/resources/dashboardReports/dashboardReportsUrls.d.ts",
+            "default": "./src/resources/dashboardReports/dashboardReportsUrls.js"
+        },
+        "./resources/dashboardSections/dashboardSections": {
+            "types": "./types/resources/dashboardSections/dashboardSections.d.ts",
+            "default": "./src/resources/dashboardSections/dashboardSections.js"
+        },
+        "./resources/dashboardSections/dashboardSectionsDto": {
+            "types": "./types/resources/dashboardSections/dashboardSectionsDto.d.ts",
+            "default": "./src/resources/dashboardSections/dashboardSectionsDto.js"
+        },
+        "./resources/dashboardSections/dashboardSectionsUrls": {
+            "types": "./types/resources/dashboardSections/dashboardSectionsUrls.d.ts",
+            "default": "./src/resources/dashboardSections/dashboardSectionsUrls.js"
+        },
+        "./resources/dashboards/dashboards": {
+            "types": "./types/resources/dashboards/dashboards.d.ts",
+            "default": "./src/resources/dashboards/dashboards.js"
+        },
+        "./resources/dashboards/dashboardsDto": {
+            "types": "./types/resources/dashboards/dashboardsDto.d.ts",
+            "default": "./src/resources/dashboards/dashboardsDto.js"
+        },
+        "./resources/dashboards/dashboardsUrls": {
+            "types": "./types/resources/dashboards/dashboardsUrls.d.ts",
+            "default": "./src/resources/dashboards/dashboardsUrls.js"
         },
         "./resources/discountProfiles/discountProfiles": {
             "types": "./types/resources/discountProfiles/discountProfiles.d.ts",
@@ -443,6 +551,18 @@
             "types": "./types/resources/trash/trashUrls.d.ts",
             "default": "./src/resources/trash/trashUrls.js"
         },
+        "./resources/giftCards/giftCards": {
+            "types": "./types/resources/giftCards/giftCards.d.ts",
+            "default": "./src/resources/giftCards/giftCards.js"
+        },
+        "./resources/giftCards/giftCardsDto": {
+            "types": "./types/resources/giftCards/giftCardsDto.d.ts",
+            "default": "./src/resources/giftCards/giftCardsDto.js"
+        },
+        "./resources/giftCards/giftCardsUrls": {
+            "types": "./types/resources/giftCards/giftCardsUrls.d.ts",
+            "default": "./src/resources/giftCards/giftCardsUrls.js"
+        },
         "./resources/email/email": {
             "types": "./types/resources/email/email.d.ts",
             "default": "./src/resources/email/email.js"
@@ -655,191 +775,6 @@
         "LICENSE"
     ],
     "scripts": {
-        "test": "node --env-file-if-exists=.env test/resources/customers/adminCustomers.js",
-        "test:credentials": "node --env-file-if-exists=.env test/credentials.js",
-        "test:map": "node --env-file-if-exists=.env test/resources/customers/adminCustomersMap.js",
-        "test:json": "node --env-file-if-exists=.env test/resources/customers/adminCustomersJson.js",
-        "test:dto": "node --env-file-if-exists=.env test/resources/customers/adminCustomersDto.js",
-        "test:seo": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfiguration.js",
-        "test:seo:map": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationMap.js",
-        "test:seo:json": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationJson.js",
-        "test:seo:dto": "node --env-file-if-exists=.env test/resources/settings/seoConfiguration/seoConfigurationDto.js",
-        "test:srp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPage.js",
-        "test:srp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageMap.js",
-        "test:srp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageJson.js",
-        "test:srp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/searchResultPageDto.js",
-        "test:cp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPage.js",
-        "test:cp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageMap.js",
-        "test:cp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageJson.js",
-        "test:cp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/categoryPageDto.js",
-        "test:sc": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCart.js",
-        "test:sc:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartMap.js",
-        "test:sc:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartJson.js",
-        "test:sc:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/shoppingCartDto.js",
-        "test:pp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPage.js",
-        "test:pp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageMap.js",
-        "test:pp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageJson.js",
-        "test:pp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/productPageDto.js",
-        "test:chp": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPage.js",
-        "test:chp:map": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageMap.js",
-        "test:chp:json": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageJson.js",
-        "test:chp:dto": "node --env-file-if-exists=.env test/resources/settings/pageSettings/checkoutPageDto.js",
-        "test:pds": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettings.js",
-        "test:pds:map": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsMap.js",
-        "test:pds:json": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsJson.js",
-        "test:pds:dto": "node --env-file-if-exists=.env test/resources/settings/priceDisplaySettings/priceDisplaySettingsDto.js",
-        "test:ae": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffects.js",
-        "test:ae:map": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsMap.js",
-        "test:ae:json": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsJson.js",
-        "test:ae:dto": "node --env-file-if-exists=.env test/resources/settings/animationEffects/animationEffectsDto.js",
-        "test:pl": "node --env-file-if-exists=.env test/resources/settings/productListing/productListing.js",
-        "test:pl:map": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingMap.js",
-        "test:pl:json": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingJson.js",
-        "test:pl:dto": "node --env-file-if-exists=.env test/resources/settings/productListing/productListingDto.js",
-        "test:cpo": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortal.js",
-        "test:cpo:map": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalMap.js",
-        "test:cpo:json": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalJson.js",
-        "test:cpo:dto": "node --env-file-if-exists=.env test/resources/settings/customerPortal/customerPortalDto.js",
-        "test:ss": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettings.js",
-        "test:ss:map": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsMap.js",
-        "test:ss:json": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsJson.js",
-        "test:ss:dto": "node --env-file-if-exists=.env test/resources/settings/siteSettings/siteSettingsDto.js",
-        "test:shs": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettings.js",
-        "test:shs:map": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsMap.js",
-        "test:shs:json": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsJson.js",
-        "test:shs:dto": "node --env-file-if-exists=.env test/resources/settings/shippingSettings/shippingSettingsDto.js",
-        "test:ses": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettings.js",
-        "test:ses:map": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsMap.js",
-        "test:ses:json": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsJson.js",
-        "test:ses:dto": "node --env-file-if-exists=.env test/resources/settings/searchSettings/searchSettingsDto.js",
-        "test:ecs": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettings.js",
-        "test:ecs:map": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsMap.js",
-        "test:ecs:json": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsJson.js",
-        "test:ecs:dto": "node --env-file-if-exists=.env test/resources/settings/ecommerceSettings/ecommerceSettingsDto.js",
-        "test:of": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlags.js",
-        "test:of:map": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsMap.js",
-        "test:of:json": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsJson.js",
-        "test:of:dto": "node --env-file-if-exists=.env test/resources/orderFlags/orderFlagsDto.js",
-        "test:il": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocations.js",
-        "test:il:map": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsMap.js",
-        "test:il:json": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsJson.js",
-        "test:il:dto": "node --env-file-if-exists=.env test/resources/inventoryLocations/inventoryLocationsDto.js",
-        "test:sm": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethods.js",
-        "test:sm:map": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsMap.js",
-        "test:sm:json": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsJson.js",
-        "test:sm:dto": "node --env-file-if-exists=.env test/resources/shippingMethods/shippingMethodsDto.js",
-        "test:shc": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClasses.js",
-        "test:shc:map": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesMap.js",
-        "test:shc:json": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesJson.js",
-        "test:shc:dto": "node --env-file-if-exists=.env test/resources/shippingClasses/shippingClassesDto.js",
-        "test:al": "node --env-file-if-exists=.env test/resources/aliases/aliases.js",
-        "test:al:map": "node --env-file-if-exists=.env test/resources/aliases/aliasesMap.js",
-        "test:al:json": "node --env-file-if-exists=.env test/resources/aliases/aliasesJson.js",
-        "test:al:dto": "node --env-file-if-exists=.env test/resources/aliases/aliasesDto.js",
-        "test:ord": "node --env-file-if-exists=.env test/resources/orders/orders.js",
-        "test:ord:map": "node --env-file-if-exists=.env test/resources/orders/ordersMap.js",
-        "test:ord:json": "node --env-file-if-exists=.env test/resources/orders/ordersJson.js",
-        "test:ord:dto": "node --env-file-if-exists=.env test/resources/orders/ordersDto.js",
-        "test:ocf": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFields.js",
-        "test:ocf:map": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsMap.js",
-        "test:ocf:json": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsJson.js",
-        "test:ocf:dto": "node --env-file-if-exists=.env test/resources/orderCustomFields/orderCustomFieldsDto.js",
-        "test:bc": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategories.js",
-        "test:bc:map": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesMap.js",
-        "test:bc:json": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesJson.js",
-        "test:bc:dto": "node --env-file-if-exists=.env test/resources/blogCategories/blogCategoriesDto.js",
-        "test:cat": "node --env-file-if-exists=.env test/resources/categories/categories.js",
-        "test:cat:map": "node --env-file-if-exists=.env test/resources/categories/categoriesMap.js",
-        "test:cat:json": "node --env-file-if-exists=.env test/resources/categories/categoriesJson.js",
-        "test:cat:dto": "node --env-file-if-exists=.env test/resources/categories/categoriesDto.js",
-        "test:dp": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfiles.js",
-        "test:dp:map": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesMap.js",
-        "test:dp:json": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesJson.js",
-        "test:dp:dto": "node --env-file-if-exists=.env test/resources/discountProfiles/discountProfilesDto.js",
-        "test:bl": "node --env-file-if-exists=.env test/resources/blogs/blogs.js",
-        "test:bl:map": "node --env-file-if-exists=.env test/resources/blogs/blogsMap.js",
-        "test:bl:json": "node --env-file-if-exists=.env test/resources/blogs/blogsJson.js",
-        "test:bl:dto": "node --env-file-if-exists=.env test/resources/blogs/blogsDto.js",
-        "test:ca": "node --env-file-if-exists=.env test/resources/carts/carts.js",
-        "test:ca:map": "node --env-file-if-exists=.env test/resources/carts/cartsMap.js",
-        "test:ca:json": "node --env-file-if-exists=.env test/resources/carts/cartsJson.js",
-        "test:ca:dto": "node --env-file-if-exists=.env test/resources/carts/cartsDto.js",
-        "test:prd": "node --env-file-if-exists=.env test/resources/products/products.js",
-        "test:prd:map": "node --env-file-if-exists=.env test/resources/products/productsMap.js",
-        "test:prd:json": "node --env-file-if-exists=.env test/resources/products/productsJson.js",
-        "test:prd:dto": "node --env-file-if-exists=.env test/resources/products/productsDto.js",
-        "test:ctry": "node --env-file-if-exists=.env test/resources/countries/countries.js",
-        "test:ctry:map": "node --env-file-if-exists=.env test/resources/countries/countriesMap.js",
-        "test:ctry:json": "node --env-file-if-exists=.env test/resources/countries/countriesJson.js",
-        "test:ctry:dto": "node --env-file-if-exists=.env test/resources/countries/countriesDto.js",
-        "test:cg": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroups.js",
-        "test:cg:map": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsMap.js",
-        "test:cg:json": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsJson.js",
-        "test:cg:dto": "node --env-file-if-exists=.env test/resources/customerGroups/customerGroupsDto.js",
-        "test:cur": "node --env-file-if-exists=.env test/resources/currencies/currencies.js",
-        "test:cur:map": "node --env-file-if-exists=.env test/resources/currencies/currenciesMap.js",
-        "test:cur:json": "node --env-file-if-exists=.env test/resources/currencies/currenciesJson.js",
-        "test:cur:dto": "node --env-file-if-exists=.env test/resources/currencies/currenciesDto.js",
-        "test:var": "node --env-file-if-exists=.env test/resources/variations/variations.js",
-        "test:var:map": "node --env-file-if-exists=.env test/resources/variations/variationsMap.js",
-        "test:var:json": "node --env-file-if-exists=.env test/resources/variations/variationsJson.js",
-        "test:var:dto": "node --env-file-if-exists=.env test/resources/variations/variationsDto.js",
-        "test:cty": "node --env-file-if-exists=.env test/resources/cities/cities.js",
-        "test:cty:map": "node --env-file-if-exists=.env test/resources/cities/citiesMap.js",
-        "test:cty:json": "node --env-file-if-exists=.env test/resources/cities/citiesJson.js",
-        "test:cty:dto": "node --env-file-if-exists=.env test/resources/cities/citiesDto.js",
-        "test:pg": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGateways.js",
-        "test:pg:map": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysMap.js",
-        "test:pg:json": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysJson.js",
-        "test:pg:dto": "node --env-file-if-exists=.env test/resources/paymentGateways/paymentGatewaysDto.js",
-        "test:tc": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodes.js",
-        "test:tc:map": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesMap.js",
-        "test:tc:json": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesJson.js",
-        "test:tc:dto": "node --env-file-if-exists=.env test/resources/taxCodes/taxCodesDto.js",
-        "test:tp": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfiles.js",
-        "test:tp:map": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesMap.js",
-        "test:tp:json": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesJson.js",
-        "test:tp:dto": "node --env-file-if-exists=.env test/resources/taxProfiles/taxProfilesDto.js",
-        "test:tr": "node --env-file-if-exists=.env test/resources/taxRules/taxRules.js",
-        "test:tr:map": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesMap.js",
-        "test:tr:json": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesJson.js",
-        "test:tr:dto": "node --env-file-if-exists=.env test/resources/taxRules/taxRulesDto.js",
-        "test:tz": "node --env-file-if-exists=.env test/resources/taxZones/taxZones.js",
-        "test:tz:map": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesMap.js",
-        "test:tz:json": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesJson.js",
-        "test:tz:dto": "node --env-file-if-exists=.env test/resources/taxZones/taxZonesDto.js",
-        "test:tst": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettings.js",
-        "test:tst:map": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsMap.js",
-        "test:tst:json": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsJson.js",
-        "test:tst:dto": "node --env-file-if-exists=.env test/resources/taxSettings/taxSettingsDto.js",
-        "test:tct": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxes.js",
-        "test:tct:map": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesMap.js",
-        "test:tct:json": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesJson.js",
-        "test:tct:dto": "node --env-file-if-exists=.env test/resources/taxCountryTaxes/taxCountryTaxesDto.js",
-        "test:tcp": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfiles.js",
-        "test:tcp:map": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesMap.js",
-        "test:tcp:json": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesJson.js",
-        "test:tcp:dto": "node --env-file-if-exists=.env test/resources/taxCustomProfiles/taxCustomProfilesDto.js",
-        "test:txn": "node --env-file-if-exists=.env test/resources/transactions/transactions.js",
-        "test:txn:map": "node --env-file-if-exists=.env test/resources/transactions/transactionsMap.js",
-        "test:txn:json": "node --env-file-if-exists=.env test/resources/transactions/transactionsJson.js",
-        "test:txn:dto": "node --env-file-if-exists=.env test/resources/transactions/transactionsDto.js",
-        "test:trash": "node --env-file-if-exists=.env test/resources/trash/trash.js",
-        "test:trash:map": "node --env-file-if-exists=.env test/resources/trash/trashMap.js",
-        "test:trash:json": "node --env-file-if-exists=.env test/resources/trash/trashJson.js",
-        "test:trash:dto": "node --env-file-if-exists=.env test/resources/trash/trashDto.js",
-        "test:email": "node --env-file-if-exists=.env test/resources/email/email.js",
-        "test:email:map": "node --env-file-if-exists=.env test/resources/email/emailMap.js",
-        "test:email:json": "node --env-file-if-exists=.env test/resources/email/emailJson.js",
-        "test:email:dto": "node --env-file-if-exists=.env test/resources/email/emailDto.js",
-        "test:cs": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettings.js",
-        "test:cs:map": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsMap.js",
-        "test:cs:json": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsJson.js",
-        "test:cs:dto": "node --env-file-if-exists=.env test/resources/commonSettings/commonSettingsDto.js",
-        "test:pages": "node --env-file-if-exists=.env test/resources/pages/pages.js",
-        "test:pages:map": "node --env-file-if-exists=.env test/resources/pages/pagesMap.js",
-        "test:pages:json": "node --env-file-if-exists=.env test/resources/pages/pagesJson.js",
-        "test:pages:dto": "node --env-file-if-exists=.env test/resources/pages/pagesDto.js",
         "types": "tsc -p tsconfig.types.json",
         "typecheck": "tsc -p tsconfig.types.json --noEmit",
         "prepare": "npm run types",

@@ -10,7 +10,7 @@ import {TaxSettings} from './taxSettingsDto.js';
 const requireClient = clientCheck('taxSettings.getTaxSettings(client)', 'client.taxSettings.getTaxSettings()');
 
 /**
- * `GET /admin/tax/settings` — the tax settings, under `tax_settings`.
+ * `GET /admin/settings/tax` — the tax settings, under `tax_settings`.
  * @param {Client} client @param {Record<string, unknown>} [queryParams] @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<TaxSettings>>}
  */
@@ -26,8 +26,7 @@ export function getTaxSettings(client, queryParams = undefined, options = undefi
 }
 
 /**
- * `PUT /admin/tax/settings` — merge into the tax settings, wrapped in `settings`, not the `tax_settings` the
- * read answers under.
+ * `PUT /admin/settings/tax` — merge into the tax settings, wrapped in `tax_settings`.
  * @param {Client} client
  * @param {TaxSettingsPayload} payload a `TaxSettingsInput`, a mapping or a JSON string
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<TaxSettings>>}
@@ -41,5 +40,36 @@ export function putTaxSettings(client, payload, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TaxSettings,
+    });
+}
+
+/**
+ * `PATCH /admin/settings/tax` — write one field or several, wrapped in `tax_settings`.
+ * @param {Client} client
+ * @param {TaxSettingsPayload} payload a `TaxSettingsInput`, a mapping or a JSON string
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<TaxSettings>>}
+ */
+export function patchTaxSettings(client, payload, options = undefined) {
+    const target = requireClient(client);
+    requirePayload(payload);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendPatchRequest(taxSettingsUrls.TAX_SETTINGS, {
+        jsonBody: payload,
+        raiseOnError,
+        responseFormat,
+        dtoType: TaxSettings,
+    });
+}
+
+/**
+ * `HEAD /admin/settings/tax` — ask whether the tax settings are reachable; no body.
+ * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
+ */
+export function headTaxSettings(client, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendApiRequest('HEAD', taxSettingsUrls.TAX_SETTINGS, {
+        raiseOnError,
+        responseFormat,
     });
 }

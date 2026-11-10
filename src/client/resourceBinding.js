@@ -3,12 +3,21 @@ import * as adminCustomers from '../resources/customers/adminCustomers.js';
 import * as orderFlags from '../resources/orderFlags/orderFlags.js';
 import * as inventoryLocations from '../resources/inventoryLocations/inventoryLocations.js';
 import * as shippingMethods from '../resources/shippingMethods/shippingMethods.js';
+import * as shippingProfiles from '../resources/shippingProfiles/shippingProfiles.js';
+import * as shippingRates from '../resources/shippingRates/shippingRates.js';
+import * as shippingRules from '../resources/shippingRules/shippingRules.js';
 import * as shippingClasses from '../resources/shippingClasses/shippingClasses.js';
 import * as aliases from '../resources/aliases/aliases.js';
+import * as orderPreviews from '../resources/orderPreviews/orderPreviews.js';
 import * as orders from '../resources/orders/orders.js';
 import * as orderCustomFields from '../resources/orderCustomFields/orderCustomFields.js';
 import * as blogCategories from '../resources/blogCategories/blogCategories.js';
 import * as categories from '../resources/categories/categories.js';
+import * as dashboardBanners from '../resources/dashboardBanners/dashboardBanners.js';
+import * as dashboardKpis from '../resources/dashboardKpis/dashboardKpis.js';
+import * as dashboardReports from '../resources/dashboardReports/dashboardReports.js';
+import * as dashboardSections from '../resources/dashboardSections/dashboardSections.js';
+import * as dashboards from '../resources/dashboards/dashboards.js';
 import * as discountProfiles from '../resources/discountProfiles/discountProfiles.js';
 import * as blogs from '../resources/blogs/blogs.js';
 import * as carts from '../resources/carts/carts.js';
@@ -29,6 +38,7 @@ import * as taxCustomProfiles from '../resources/taxCustomProfiles/taxCustomProf
 import * as transactions from '../resources/transactions/transactions.js';
 import * as trash from '../resources/trash/trash.js';
 import * as email from '../resources/email/email.js';
+import * as giftCards from '../resources/giftCards/giftCards.js';
 import * as commonSettings from '../resources/commonSettings/commonSettings.js';
 import * as pages from '../resources/pages/pages.js';
 import * as categoryPage from '../resources/settings/pageSettings/categoryPage.js';
@@ -56,12 +66,21 @@ const RESOURCE_MODULES = new Map(
         ['orderFlags', orderFlags],
         ['inventoryLocations', inventoryLocations],
         ['shippingMethods', shippingMethods],
+        ['shippingProfiles', shippingProfiles],
+        ['shippingRates', shippingRates],
+        ['shippingRules', shippingRules],
         ['shippingClasses', shippingClasses],
         ['aliases', aliases],
+        ['orderPreviews', orderPreviews],
         ['orders', orders],
         ['orderCustomFields', orderCustomFields],
         ['blogCategories', blogCategories],
         ['categories', categories],
+        ['dashboardBanners', dashboardBanners],
+        ['dashboardKpis', dashboardKpis],
+        ['dashboardReports', dashboardReports],
+        ['dashboardSections', dashboardSections],
+        ['dashboards', dashboards],
         ['discountProfiles', discountProfiles],
         ['blogs', blogs],
         ['carts', carts],
@@ -82,6 +101,7 @@ const RESOURCE_MODULES = new Map(
         ['transactions', transactions],
         ['trash', trash],
         ['email', email],
+        ['giftCards', giftCards],
         ['commonSettings', commonSettings],
         ['pages', pages],
         ['categoryPage', categoryPage],

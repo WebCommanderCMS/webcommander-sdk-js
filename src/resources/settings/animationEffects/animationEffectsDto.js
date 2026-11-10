@@ -13,6 +13,15 @@ export class CustomLoader extends Dto {
     /** @type {string | null} */ fileUrl = this.declared('fileUrl');
 }
 
+/** The `custom_loader` section: the uploaded preloader image, or `enabled: false`. */
+export class CustomLoaderSection extends Dto {
+    static FIELDS = {
+        customLoader: CustomLoader,
+    };
+
+    /** @type {CustomLoader | null} */ customLoader = this.declared('customLoader');
+}
+
 /** One entry of `preloader_custom_page` as a read sends it; a write takes page ids instead. */
 export class PreloaderPage extends Dto {
     static FIELDS = {
@@ -197,4 +206,5 @@ sealDtoSchema(
     SectionMeta,
     GroupMeta,
     AnimationEffects,
+    CustomLoaderSection,
 );

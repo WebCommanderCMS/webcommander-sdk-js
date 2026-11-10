@@ -253,6 +253,19 @@ export class SearchResultPage extends Dto {
     /** @type {unknown} */ fieldMetadata = this.declared('fieldMetadata');
 }
 
+/** The reindex's answer: `status` `accepted`, `clean` and a `message`. */
+export class SearchReindex extends Dto {
+    static FIELDS = {
+        status: 'string',
+        clean: 'boolean',
+        message: 'string',
+    };
+
+    /** @type {string | null} */ status = this.declared('status');
+    /** @type {boolean | null} */ clean = this.declared('clean');
+    /** @type {string | null} */ message = this.declared('message');
+}
+
 sealDtoSchema(
     ProductInteractionButtons,
     NumberOfSearchesPerResult,
@@ -268,4 +281,5 @@ sealDtoSchema(
     SectionMeta,
     GroupMeta,
     SearchResultPage,
+    SearchReindex,
 );

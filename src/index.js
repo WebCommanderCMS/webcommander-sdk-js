@@ -25,12 +25,21 @@ import * as adminCustomers from './resources/customers/adminCustomers.js';
 import * as orderFlags from './resources/orderFlags/orderFlags.js';
 import * as inventoryLocations from './resources/inventoryLocations/inventoryLocations.js';
 import * as shippingMethods from './resources/shippingMethods/shippingMethods.js';
+import * as shippingProfiles from './resources/shippingProfiles/shippingProfiles.js';
+import * as shippingRates from './resources/shippingRates/shippingRates.js';
+import * as shippingRules from './resources/shippingRules/shippingRules.js';
 import * as shippingClasses from './resources/shippingClasses/shippingClasses.js';
 import * as aliases from './resources/aliases/aliases.js';
+import * as orderPreviews from './resources/orderPreviews/orderPreviews.js';
 import * as orders from './resources/orders/orders.js';
 import * as orderCustomFields from './resources/orderCustomFields/orderCustomFields.js';
 import * as blogCategories from './resources/blogCategories/blogCategories.js';
 import * as categories from './resources/categories/categories.js';
+import * as dashboardBanners from './resources/dashboardBanners/dashboardBanners.js';
+import * as dashboardKpis from './resources/dashboardKpis/dashboardKpis.js';
+import * as dashboardReports from './resources/dashboardReports/dashboardReports.js';
+import * as dashboardSections from './resources/dashboardSections/dashboardSections.js';
+import * as dashboards from './resources/dashboards/dashboards.js';
 import * as discountProfiles from './resources/discountProfiles/discountProfiles.js';
 import * as blogs from './resources/blogs/blogs.js';
 import * as carts from './resources/carts/carts.js';
@@ -51,6 +60,7 @@ import * as taxCustomProfiles from './resources/taxCustomProfiles/taxCustomProfi
 import * as transactions from './resources/transactions/transactions.js';
 import * as trash from './resources/trash/trash.js';
 import * as email from './resources/email/email.js';
+import * as giftCards from './resources/giftCards/giftCards.js';
 import * as commonSettings from './resources/commonSettings/commonSettings.js';
 import * as pages from './resources/pages/pages.js';
 import * as categoryPage from './resources/settings/pageSettings/categoryPage.js';
@@ -73,12 +83,21 @@ export {
     orderFlags,
     inventoryLocations,
     shippingMethods,
+    shippingProfiles,
+    shippingRates,
+    shippingRules,
     shippingClasses,
     aliases,
+    orderPreviews,
     orders,
     orderCustomFields,
     blogCategories,
     categories,
+    dashboardBanners,
+    dashboardKpis,
+    dashboardReports,
+    dashboardSections,
+    dashboards,
     discountProfiles,
     blogs,
     carts,
@@ -99,6 +118,7 @@ export {
     transactions,
     trash,
     email,
+    giftCards,
     commonSettings,
     pages,
     categoryPage,
@@ -120,12 +140,21 @@ export * as adminCustomersUrls from './resources/customers/adminCustomersUrls.js
 export * as orderFlagsUrls from './resources/orderFlags/orderFlagsUrls.js';
 export * as inventoryLocationsUrls from './resources/inventoryLocations/inventoryLocationsUrls.js';
 export * as shippingMethodsUrls from './resources/shippingMethods/shippingMethodsUrls.js';
+export * as shippingProfilesUrls from './resources/shippingProfiles/shippingProfilesUrls.js';
+export * as shippingRatesUrls from './resources/shippingRates/shippingRatesUrls.js';
+export * as shippingRulesUrls from './resources/shippingRules/shippingRulesUrls.js';
 export * as shippingClassesUrls from './resources/shippingClasses/shippingClassesUrls.js';
 export * as aliasesUrls from './resources/aliases/aliasesUrls.js';
+export * as orderPreviewsUrls from './resources/orderPreviews/orderPreviewsUrls.js';
 export * as ordersUrls from './resources/orders/ordersUrls.js';
 export * as orderCustomFieldsUrls from './resources/orderCustomFields/orderCustomFieldsUrls.js';
 export * as blogCategoriesUrls from './resources/blogCategories/blogCategoriesUrls.js';
 export * as categoriesUrls from './resources/categories/categoriesUrls.js';
+export * as dashboardBannersUrls from './resources/dashboardBanners/dashboardBannersUrls.js';
+export * as dashboardKpisUrls from './resources/dashboardKpis/dashboardKpisUrls.js';
+export * as dashboardReportsUrls from './resources/dashboardReports/dashboardReportsUrls.js';
+export * as dashboardSectionsUrls from './resources/dashboardSections/dashboardSectionsUrls.js';
+export * as dashboardsUrls from './resources/dashboards/dashboardsUrls.js';
 export * as discountProfilesUrls from './resources/discountProfiles/discountProfilesUrls.js';
 export * as blogsUrls from './resources/blogs/blogsUrls.js';
 export * as cartsUrls from './resources/carts/cartsUrls.js';
@@ -146,6 +175,7 @@ export * as taxCustomProfilesUrls from './resources/taxCustomProfiles/taxCustomP
 export * as transactionsUrls from './resources/transactions/transactionsUrls.js';
 export * as trashUrls from './resources/trash/trashUrls.js';
 export * as emailUrls from './resources/email/emailUrls.js';
+export * as giftCardsUrls from './resources/giftCards/giftCardsUrls.js';
 export * as commonSettingsUrls from './resources/commonSettings/commonSettingsUrls.js';
 export * as pagesUrls from './resources/pages/pagesUrls.js';
 export * as categoryPageUrls from './resources/settings/pageSettings/categoryPageUrls.js';
@@ -168,12 +198,21 @@ export * as adminCustomersDto from './resources/customers/adminCustomersDto.js';
 export * as orderFlagsDto from './resources/orderFlags/orderFlagsDto.js';
 export * as inventoryLocationsDto from './resources/inventoryLocations/inventoryLocationsDto.js';
 export * as shippingMethodsDto from './resources/shippingMethods/shippingMethodsDto.js';
+export * as shippingProfilesDto from './resources/shippingProfiles/shippingProfilesDto.js';
+export * as shippingRatesDto from './resources/shippingRates/shippingRatesDto.js';
+export * as shippingRulesDto from './resources/shippingRules/shippingRulesDto.js';
 export * as shippingClassesDto from './resources/shippingClasses/shippingClassesDto.js';
 export * as aliasesDto from './resources/aliases/aliasesDto.js';
+export * as orderPreviewsDto from './resources/orderPreviews/orderPreviewsDto.js';
 export * as ordersDto from './resources/orders/ordersDto.js';
 export * as orderCustomFieldsDto from './resources/orderCustomFields/orderCustomFieldsDto.js';
 export * as blogCategoriesDto from './resources/blogCategories/blogCategoriesDto.js';
 export * as categoriesDto from './resources/categories/categoriesDto.js';
+export * as dashboardBannersDto from './resources/dashboardBanners/dashboardBannersDto.js';
+export * as dashboardKpisDto from './resources/dashboardKpis/dashboardKpisDto.js';
+export * as dashboardReportsDto from './resources/dashboardReports/dashboardReportsDto.js';
+export * as dashboardSectionsDto from './resources/dashboardSections/dashboardSectionsDto.js';
+export * as dashboardsDto from './resources/dashboards/dashboardsDto.js';
 export * as discountProfilesDto from './resources/discountProfiles/discountProfilesDto.js';
 export * as blogsDto from './resources/blogs/blogsDto.js';
 export * as cartsDto from './resources/carts/cartsDto.js';
@@ -194,6 +233,7 @@ export * as taxCustomProfilesDto from './resources/taxCustomProfiles/taxCustomPr
 export * as transactionsDto from './resources/transactions/transactionsDto.js';
 export * as trashDto from './resources/trash/trashDto.js';
 export * as emailDto from './resources/email/emailDto.js';
+export * as giftCardsDto from './resources/giftCards/giftCardsDto.js';
 export * as commonSettingsDto from './resources/commonSettings/commonSettingsDto.js';
 export * as pagesDto from './resources/pages/pagesDto.js';
 export * as categoryPageDto from './resources/settings/pageSettings/categoryPageDto.js';

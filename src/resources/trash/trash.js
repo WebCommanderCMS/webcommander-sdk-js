@@ -1,6 +1,13 @@
 import {clientCheck, readCallOptions, requirePayload} from '../callArguments.js';
 import * as trashUrls from './trashUrls.js';
-import {TrashBulkDeleteResult, TrashBulkRestoreResult, TrashItem, TrashPage, TrashTypeList} from './trashDto.js';
+import {
+    TrashBulkDeleteResult,
+    TrashBulkRestoreResult,
+    TrashExternalLinks,
+    TrashItem,
+    TrashPage,
+    TrashTypeList,
+} from './trashDto.js';
 
 /** @typedef {import('../../client/webCommanderClient.js').WebCommanderClient} Client */
 /** @template T @typedef {import('../../client/apiResponse.js').ApiResponse<T>} ApiResponse */
@@ -144,5 +151,22 @@ export function bulkDeleteTrash(client, payload, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TrashBulkDeleteResult,
+    });
+}
+
+/**
+ * `GET /admin/trash/{trash_type}/{trash_item_id}/external_links` — the links outside the store that a permanent delete
+ * of a trashed item would break; `404` for an item that is not in the trash.
+ * @param {Client} client @param {string} trashType a value from `listTrashTypes` @param {number|string} trashItemId
+ * @param {CallOptions} [options] @returns {Promise<ApiResponse<TrashExternalLinks>>}
+ */
+export function getTrashItemExternalLinks(client, trashType, trashItemId, options = undefined) {
+    const target = requireClient(client);
+    const {raiseOnError, responseFormat} = readCallOptions(options);
+    return target.sendGetRequest(trashUrls.TRASH_ITEM_EXTERNAL_LINKS, {
+        pathParams: {trash_type: trashType, trash_item_id: trashItemId},
+        raiseOnError,
+        responseFormat,
+        dtoType: TrashExternalLinks,
     });
 }

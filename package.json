@@ -1,6 +1,6 @@
 {
     "name": "@webcommander/webcommander",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "JavaScript SDK for the WebCommander v4 REST API.",
     "type": "module",
     "license": "MIT",

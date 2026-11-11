@@ -560,6 +560,9 @@ export class SdkConfig {
     get authString() {
         return this.auth.authString;
     }
+    get authBaseUrl() {
+        return this.auth.authBaseUrl;
+    }
     get clientName() {
         return this.auth.clientName;
     }
@@ -607,6 +610,7 @@ export class SdkConfig {
             'clientSecret',
             'redirectUri',
             'authString',
+            'authBaseUrl',
             'clientName',
             'grantType',
             'tokenCachePath',

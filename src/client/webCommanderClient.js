@@ -779,6 +779,7 @@ export class WebCommanderClient {
                     clientSecret: config.clientSecret,
                     authString: config.authString,
                     grantType: config.grantType,
+                    authBaseUrl: config.authBaseUrl,
                 }),
                 {maxBytes: config.maxTokenCacheBytes},
             );

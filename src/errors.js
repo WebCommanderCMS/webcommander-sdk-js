@@ -45,7 +45,7 @@ const HINTS_BY_STATUS = Object.assign(Object.create(null), {
         "query parameter names against the endpoint's JSDoc",
     401:
         'credentials were rejected, or the token expired and could not be renewed ' +
-        '- check clientId, clientSecret and authString',
+        '- check clientId, clientSecret and authString, or authBaseUrl for a Hykmah client',
     403: 'authenticated, but this client is not allowed to do that',
     404: 'no such record - check the id you passed actually exists',
     405: 'wrong HTTP method for this path',

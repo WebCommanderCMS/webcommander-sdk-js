@@ -62,6 +62,24 @@ try {
 The SDK never reads credentials from the environment; the example reads them in your code. Node can
 load a `.env` file for you with `process.loadEnvFile('.env')`.
 
+### Hykmah sign-in
+
+A store whose API client was issued through Hykmah gets its token from Hykmah instead of from the
+store. Pass the Hykmah address as `authBaseUrl`; `redirectUri` and `authString` are not needed:
+
+```js
+const auth = new AuthConfig({
+    clientName: 'default',
+    baseUrl: process.env.WC_BASE_URL,
+    clientId: process.env.WC_CLIENT_ID,
+    clientSecret: process.env.WC_CLIENT_SECRET,
+    authBaseUrl: process.env.WC_AUTH_BASE_URL,
+});
+```
+
+Only the token request goes to `authBaseUrl`. Every API call still goes to `baseUrl`. Leave
+`authBaseUrl` unset to get the token from the store with `redirectUri` and `authString`.
+
 ## Configuration
 
 Credentials go in an `AuthConfig`, and behaviour settings go in an `SdkConfig` or the options of

@@ -10,6 +10,8 @@ import {redactFields, redactMapping} from '../redaction.js';
 import {ApiResponse, RequestInfo} from '../client/apiResponse.js';
 
 export const TOKEN_PATH_TEMPLATE = '/api/{api_version}/oauth2/token';
+/** The token path on the Hykmah origin set as `authBaseUrl`. */
+export const HYKMAH_TOKEN_PATH = '/api/v1/oauth/token';
 export const DEFAULT_TOKEN_TTL_SECONDS = 3600;
 export const EXPIRY_SKEW_SECONDS = 60;
 export const MAX_TOKEN_TTL_SECONDS = 24 * 60 * 60;
@@ -189,12 +191,14 @@ export class TokenProvider {
         /** @private */
         this._transport = transport;
         /** @private */
-        this._tokenPath = buildTokenPath(config.apiVersion);
+        this._usesHykmah = Boolean(config.authBaseUrl);
+        /** @private */
+        this._tokenPath = this._usesHykmah ? HYKMAH_TOKEN_PATH : buildTokenPath(config.apiVersion);
     }
 
-    /** The absolute token endpoint URL. @returns {string} */
+    /** The absolute token endpoint URL: the Hykmah origin when `authBaseUrl` is set, otherwise the store. @returns {string} */
     get tokenUrl() {
-        return this._config.baseUrl + this._tokenPath;
+        return (this._usesHykmah ? this._config.authBaseUrl : this._config.baseUrl) + this._tokenPath;
     }
 
     /** A usable token, from the cache when one is still good. @returns {Promise<string>} */
@@ -242,11 +246,12 @@ export class TokenProvider {
     async #requestTokenWithCredentials() {
         const response = await this.#send(credentialsPayload(this._config));
         if (!response.succeeded) {
+            const checked = this._usesHykmah ? '; check clientId, clientSecret, grantType and authBaseUrl' : '';
             const messages = response.getErrorMessages();
             // Structural: an uncaught error prints this, and the grant's own reason names the refused client id.
             const error = new SdkAuthError(
                 `token request failed with ${response.statusCode} and ${messages.length} reported message(s); ` +
-                    "read getErrorMessages() for the store's own text",
+                    `read getErrorMessages() for the store's own text${checked}`,
                 {
                     statusCode: response.statusCode,
                     errorType: response.errorType,
@@ -265,13 +270,22 @@ export class TokenProvider {
     async #requestTokenWithRefreshGrant(refreshToken) {
         let response;
         try {
-            response = await this.#send({
-                grant_type: REFRESH_GRANT_TYPE,
-                refresh_token: refreshToken,
-                redirect_uri: this._config.redirectUri,
-                client_id: this._config.clientId,
-                client_secret: this._config.clientSecret,
-            });
+            response = await this.#send(
+                this._usesHykmah
+                    ? {
+                          grant_type: REFRESH_GRANT_TYPE,
+                          refresh_token: refreshToken,
+                          client_id: this._config.clientId,
+                          client_secret: this._config.clientSecret,
+                      }
+                    : {
+                          grant_type: REFRESH_GRANT_TYPE,
+                          refresh_token: refreshToken,
+                          redirect_uri: this._config.redirectUri,
+                          client_id: this._config.clientId,
+                          client_secret: this._config.clientSecret,
+                      },
+            );
         } catch (error) {
             if (error instanceof SdkError) return null;
             throw error;
@@ -289,8 +303,9 @@ export class TokenProvider {
         const parts = await this._transport.sendHttpRequest({
             method: 'POST',
             url: this.tokenUrl,
-            endpoint: TOKEN_PATH_TEMPLATE,
-            jsonBody: body,
+            endpoint: this._usesHykmah ? HYKMAH_TOKEN_PATH : TOKEN_PATH_TEMPLATE,
+            // Hykmah refuses a JSON body, so it gets a form; the store keeps JSON.
+            ...(this._usesHykmah ? {formData: body} : {jsonBody: body}),
             headers: {
                 Accept: 'application/json',
                 'User-Agent': this._config.userAgent,
@@ -307,7 +322,7 @@ export class TokenProvider {
                 apiVersion: this._config.apiVersion,
                 httpMethod: 'POST',
                 url: this.tokenUrl,
-                endpoint: TOKEN_PATH_TEMPLATE,
+                endpoint: this._usesHykmah ? HYKMAH_TOKEN_PATH : TOKEN_PATH_TEMPLATE,
                 queryParams: {},
                 headers: {},
                 attemptCount: parts.attemptCount,
@@ -354,6 +369,13 @@ export class TokenProvider {
 }
 
 function credentialsPayload(config) {
+    if (config.authBaseUrl) {
+        return {
+            grant_type: config.grantType,
+            client_id: config.clientId,
+            client_secret: config.clientSecret,
+        };
+    }
     return {
         grant_type: config.grantType,
         auth_string: config.authString,

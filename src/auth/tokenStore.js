@@ -107,11 +107,18 @@ function restrictToOwner(target) {
 }
 
 /**
- * A length-prefixed SHA-256 fingerprint of the token's credentials; `'v3'` is on-disk format, bumped with the inputs.
- * @param {{ baseUrl: string, clientId: string, clientSecret?: string, authString?: string, grantType?: string }} credentials @returns {string}
+ * A length-prefixed SHA-256 fingerprint of the token's credentials; `'v4'` is on-disk format, bumped with the inputs.
+ * @param {{ baseUrl: string, clientId: string, clientSecret?: string, authString?: string, grantType?: string, authBaseUrl?: string | null }} credentials @returns {string}
  */
-export function buildCredentialsNamespace({baseUrl, clientId, clientSecret = '', authString = '', grantType = ''}) {
-    const parts = ['v3', baseUrl, clientId, clientSecret, authString, grantType];
+export function buildCredentialsNamespace({
+    baseUrl,
+    clientId,
+    clientSecret = '',
+    authString = '',
+    grantType = '',
+    authBaseUrl = '',
+}) {
+    const parts = ['v4', baseUrl, clientId, clientSecret, authString, grantType, authBaseUrl ?? ''];
     // Length-prefixed in code points, so the concatenation cannot be ambiguous.
     const material = parts.map((value) => `${[...String(value)].length}:${value}`).join('');
     return createHash('sha256').update(material, 'utf8').digest('hex').slice(0, 16);

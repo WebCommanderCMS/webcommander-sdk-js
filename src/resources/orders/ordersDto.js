@@ -540,15 +540,17 @@ export class OrderCommentList extends Dto {
     /** @type {Array<OrderComment | null> | null} */ comments = this.declared('comments');
 }
 
-/** An order's custom field values; `orderId` echoes the `internal_id` asked for, and a `delivery` order adds `deliveryCost`. */
+/** An order's custom field values; a `delivery` order adds `deliveryCost`. */
 export class OrderCustomFields extends Dto {
     static FIELDS = {
         orderId: 'int',
+        internalId: 'int',
         customFields: dtoList('any'),
         deliveryCost: 'float',
     };
 
     /** @type {number | null} */ orderId = this.declared('orderId');
+    /** @type {number | null} */ internalId = this.declared('internalId');
     /** @type {unknown[] | null} */ customFields = this.declared('customFields');
     /** @type {number | null} */ deliveryCost = this.declared('deliveryCost');
 }
@@ -651,7 +653,7 @@ export class OrderRefundRecordLine extends Dto {
     /** @type {boolean | null} */ lineFullyRefunded = this.declared('lineFullyRefunded');
 }
 
-/** One refund an order holds; `orderId` is the order's internal id. A payment refund fills `recordOnly` to `lines`; an order refund leaves them `null` and `lines` empty. */
+/** One refund an order holds. A payment refund fills `recordOnly` to `lines`; an order refund leaves them `null` and `lines` empty. */
 export class OrderRefundRecord extends Dto {
     static FIELDS = {
         gateway: 'string',
@@ -700,28 +702,31 @@ export class OrderRefundRecord extends Dto {
     /** @type {string | null} */ updatedAt = this.declared('updatedAt');
 }
 
-/** One page of an order's refunds, newest first; `orderId` is the order's internal id and `orderNo` the `{order_id}` the path took. */
+/** One page of an order's refunds, newest first; `orderNo` equals `orderId`. */
 export class OrderRefundPage extends Dto {
     static FIELDS = {
         orderId: 'int',
+        internalId: 'int',
         orderNo: 'int',
         refunds: dtoList(OrderRefundRecord),
         pagination: Pagination,
     };
 
     /** @type {number | null} */ orderId = this.declared('orderId');
+    /** @type {number | null} */ internalId = this.declared('internalId');
     /** @type {number | null} */ orderNo = this.declared('orderNo');
     /** @type {Array<OrderRefundRecord | null> | null} */ refunds = this.declared('refunds');
     /** @type {Pagination | null} */ pagination = this.declared('pagination');
 }
 
-/** What a payment refund answers. */
+/** What a payment refund answers; `orderNo` equals `orderId`. */
 export class PaymentRefund extends Dto {
     static FIELDS = {
         status: 'string',
         refundId: 'int',
         paymentId: 'int',
         orderId: 'int',
+        internalId: 'int',
         orderNo: 'int',
         currency: 'string',
         amount: 'float',
@@ -747,6 +752,7 @@ export class PaymentRefund extends Dto {
     /** @type {number | null} */ refundId = this.declared('refundId');
     /** @type {number | null} */ paymentId = this.declared('paymentId');
     /** @type {number | null} */ orderId = this.declared('orderId');
+    /** @type {number | null} */ internalId = this.declared('internalId');
     /** @type {number | null} */ orderNo = this.declared('orderNo');
     /** @type {string | null} */ currency = this.declared('currency');
     /** @type {number | null} */ amount = this.declared('amount');

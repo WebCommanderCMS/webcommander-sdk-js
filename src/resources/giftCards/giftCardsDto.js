@@ -1,8 +1,8 @@
 import {Dto, dtoList, sealDtoSchema} from '../../dto.js';
 
 /**
- * One gift card. `code` is what an order preview's `gift-card` call takes; a card can be applied only while `isActive`
- * and `isPaid`, with a `balance` above zero, before its `availableTo` date and with `email` equal to the previewed
+ * One gift card. `code` is what a checkout's `gift_card` call takes; a card can be applied only while `isActive`
+ * and `isPaid`, with a `balance` above zero, before its `availableTo` date and with `email` equal to the cart customer's
  * customer's email.
  */
 export class GiftCard extends Dto {

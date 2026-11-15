@@ -29,19 +29,6 @@ export function listShippingClasses(client, queryParams = undefined, options = u
 }
 
 /**
- * `HEAD /admin/shipping_classes` — ask whether the collection answers; `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headShippingClasses(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', shippingClassesUrls.SHIPPING_CLASSES, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `GET /admin/shipping_classes/count` — how many classes the store holds, answering
  * `{"shipping_classes": {"count": N}}`; no query parameter narrows it.
  * @param {Client} client @param {Record<string, unknown>} [queryParams] @param {CallOptions} [options]
@@ -90,21 +77,6 @@ export function getShippingClass(client, shippingClassId, queryParams = undefine
         raiseOnError,
         responseFormat,
         dtoType: ShippingClass,
-    });
-}
-
-/**
- * `HEAD /admin/shipping_classes/{shipping_class_id}` — ask whether a class's path answers.
- * @param {Client} client @param {number|string} shippingClassId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headShippingClass(client, shippingClassId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', shippingClassesUrls.SHIPPING_CLASS, {
-        pathParams: {shipping_class_id: shippingClassId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

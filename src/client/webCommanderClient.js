@@ -56,7 +56,7 @@ import {
 /** @typedef {BoundModule<typeof import('../resources/shippingRules/shippingRules.js')>} BoundShippingRules */
 /** @typedef {BoundModule<typeof import('../resources/shippingClasses/shippingClasses.js')>} BoundShippingClasses */
 /** @typedef {BoundModule<typeof import('../resources/aliases/aliases.js')>} BoundAliases */
-/** @typedef {BoundModule<typeof import('../resources/orderPreviews/orderPreviews.js')>} BoundOrderPreviews */
+/** @typedef {BoundModule<typeof import('../resources/carts/adminCarts.js')>} BoundAdminCarts */
 /** @typedef {BoundModule<typeof import('../resources/orders/orders.js')>} BoundOrders */
 /** @typedef {BoundModule<typeof import('../resources/orderCustomFields/orderCustomFields.js')>} BoundOrderCustomFields */
 /** @typedef {BoundModule<typeof import('../resources/blogCategories/blogCategories.js')>} BoundBlogCategories */
@@ -569,9 +569,9 @@ export class WebCommanderClient {
         return /** @type {any} */ (this.#boundResource('aliases'));
     }
 
-    /** @returns {BoundOrderPreviews} */
-    get orderPreviews() {
-        return /** @type {any} */ (this.#boundResource('orderPreviews'));
+    /** @returns {BoundAdminCarts} */
+    get adminCarts() {
+        return /** @type {any} */ (this.#boundResource('adminCarts'));
     }
 
     /** @returns {BoundOrders} */

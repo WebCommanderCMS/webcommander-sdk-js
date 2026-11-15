@@ -229,7 +229,7 @@ export class CartAddressInput extends Dto {
     /** @type {string | null} */ stateCode = this.declared('stateCode');
 }
 
-/** The add's body, sent bare; `customerId` takes the customer's `internal_id`. */
+/** The add's body, sent bare; `customerId` takes the customer's `customer_id`. */
 export class CartItemInput extends Dto {
     static FIELDS = {
         productId: 'int',

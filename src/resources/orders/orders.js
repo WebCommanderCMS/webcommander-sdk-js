@@ -244,15 +244,15 @@ export function createOrderComment(client, orderId, payload, options = undefined
 }
 
 /**
- * `GET /admin/orders/{order_internal_id}/custom_fields` — an order's custom field values.
- * @param {Client} client @param {number|string} orderInternalId an order's `internal_id`
+ * `GET /admin/orders/{order_id}/custom_fields` — an order's custom field values.
+ * @param {Client} client @param {number|string} orderId an order's `order_id`
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<OrderCustomFields>>}
  */
-export function getOrderCustomFields(client, orderInternalId, options = undefined) {
+export function getOrderCustomFields(client, orderId, options = undefined) {
     const target = requireClient(client);
     const {raiseOnError, responseFormat} = readCallOptions(options);
     return target.sendGetRequest(ordersUrls.ORDER_CUSTOM_FIELDS, {
-        pathParams: {order_internal_id: orderInternalId},
+        pathParams: {order_id: orderId},
         raiseOnError,
         responseFormat,
         dtoType: OrderCustomFields,
@@ -337,15 +337,15 @@ export function createPaymentRefund(client, paymentId, payload, idempotencyKey, 
 }
 
 /**
- * `POST /admin/orders/{order_internal_id}/send-invoice` — email the invoice.
- * @param {Client} client @param {number|string} orderInternalId an order's `internal_id`
+ * `POST /admin/orders/{order_id}/send-invoice` — email the invoice.
+ * @param {Client} client @param {number|string} orderId an order's `order_id`
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<InvoiceDispatch>>}
  */
-export function sendOrderInvoice(client, orderInternalId, options = undefined) {
+export function sendOrderInvoice(client, orderId, options = undefined) {
     const target = requireClient(client);
     const {raiseOnError, responseFormat} = readCallOptions(options);
     return target.sendPostRequest(ordersUrls.ORDER_SEND_INVOICE, {
-        pathParams: {order_internal_id: orderInternalId},
+        pathParams: {order_id: orderId},
         raiseOnError,
         responseFormat,
         dtoType: InvoiceDispatch,

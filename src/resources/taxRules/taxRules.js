@@ -29,19 +29,6 @@ export function listTaxRules(client, queryParams = undefined, options = undefine
 }
 
 /**
- * `HEAD /admin/tax_rules` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxRules(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxRulesUrls.TAX_RULES, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/tax_rules` — create a tax rule inside the `tax_rule` wrapper.
  * @param {Client} client @param {TaxRulePayload} payload a `TaxRuleInput`, a mapping or a JSON string
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<TaxRule>>}
@@ -71,21 +58,6 @@ export function getTaxRule(client, taxRuleId, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TaxRule,
-    });
-}
-
-/**
- * `HEAD /admin/tax_rules/{tax_rule_id}` — `200` even for an unknown id, so it is no existence check.
- * @param {Client} client @param {number|string} taxRuleId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxRule(client, taxRuleId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxRulesUrls.TAX_RULE, {
-        pathParams: {tax_rule_id: taxRuleId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

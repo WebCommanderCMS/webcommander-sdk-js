@@ -29,19 +29,6 @@ export function listTaxCodes(client, queryParams = undefined, options = undefine
 }
 
 /**
- * `HEAD /admin/tax_codes` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxCodes(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxCodesUrls.TAX_CODES, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/tax_codes` — create a tax code inside the `tax_code` wrapper; `name` is required.
  * @param {Client} client @param {TaxCodePayload} payload a `TaxCodeInput`, a mapping or a JSON string
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<TaxCode>>}
@@ -71,21 +58,6 @@ export function getTaxCode(client, taxCodeId, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TaxCode,
-    });
-}
-
-/**
- * `HEAD /admin/tax_codes/{tax_code_id}` — `200` even for an unknown id, so it is no existence check.
- * @param {Client} client @param {number|string} taxCodeId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxCode(client, taxCodeId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxCodesUrls.TAX_CODE, {
-        pathParams: {tax_code_id: taxCodeId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

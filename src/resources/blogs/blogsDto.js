@@ -56,14 +56,16 @@ export class BlogAuthor extends Dto {
     /** @type {string | null} */ name = this.declared('name');
 }
 
-/** One customer, by `internal_id`, or one customer group a restricted blog is shown to. */
+/** One customer, by `customer_id`, or one customer group a restricted blog is shown to. A customer also carries its `internal_id`, for reference. */
 export class BlogAudienceMember extends Dto {
     static FIELDS = {
         id: 'int',
+        internalId: 'int',
         name: 'string',
     };
 
     /** @type {number | null} */ id = this.declared('id');
+    /** @type {number | null} */ internalId = this.declared('internalId');
     /** @type {string | null} */ name = this.declared('name');
 }
 
@@ -78,7 +80,7 @@ export class BlogAudience extends Dto {
     /** @type {Array<BlogAudienceMember | null> | null} */ groups = this.declared('groups');
 }
 
-/** The audience a write names: customer `internal_id` values and customer group ids; a `customer_id` is dropped. */
+/** The audience a write names: customer `customer_id` values and customer group ids. */
 export class BlogAudienceInput extends Dto {
     static FIELDS = {
         customers: dtoList('int'),

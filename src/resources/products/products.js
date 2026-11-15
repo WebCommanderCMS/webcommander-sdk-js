@@ -261,7 +261,7 @@ export function checkProductSku(client, sku, excludeProductId = undefined, optio
 /**
  * `GET /admin/products/special` — list a special selection of products. `type` is required: `onSale`, `featured`,
  * `new`, `topSelling`, `lastBought` or `lastViewed`. `max` (1 to 100, default 10) and `offset` page it. The last two
- * are per customer and need `customerId` (the `customer_id` or `internal_id` of a customer) or `customer_email`;
+ * are per customer and need `customerId` (a customer's `customer_id`) or `customer_email`;
  * `customer_id` is not read, and an unknown customer is `400 unknown_reference`. A name it does not know is ignored.
  * @param {Client} client @param {Record<string, unknown>} queryParams @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<ProductSpecialPage>>}

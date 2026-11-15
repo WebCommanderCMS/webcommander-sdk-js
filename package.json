@@ -1,6 +1,6 @@
 {
     "name": "@webcommander/webcommander",
-    "version": "4.0.2",
+    "version": "4.0.3",
     "description": "JavaScript SDK for the WebCommander v4 REST API.",
     "type": "module",
     "license": "MIT",
@@ -203,17 +203,17 @@
             "types": "./types/resources/aliases/aliasesUrls.d.ts",
             "default": "./src/resources/aliases/aliasesUrls.js"
         },
-        "./resources/orderPreviews/orderPreviews": {
-            "types": "./types/resources/orderPreviews/orderPreviews.d.ts",
-            "default": "./src/resources/orderPreviews/orderPreviews.js"
+        "./resources/carts/adminCarts": {
+            "types": "./types/resources/carts/adminCarts.d.ts",
+            "default": "./src/resources/carts/adminCarts.js"
         },
-        "./resources/orderPreviews/orderPreviewsDto": {
-            "types": "./types/resources/orderPreviews/orderPreviewsDto.d.ts",
-            "default": "./src/resources/orderPreviews/orderPreviewsDto.js"
+        "./resources/carts/adminCartsDto": {
+            "types": "./types/resources/carts/adminCartsDto.d.ts",
+            "default": "./src/resources/carts/adminCartsDto.js"
         },
-        "./resources/orderPreviews/orderPreviewsUrls": {
-            "types": "./types/resources/orderPreviews/orderPreviewsUrls.d.ts",
-            "default": "./src/resources/orderPreviews/orderPreviewsUrls.js"
+        "./resources/carts/adminCartsUrls": {
+            "types": "./types/resources/carts/adminCartsUrls.d.ts",
+            "default": "./src/resources/carts/adminCartsUrls.js"
         },
         "./resources/orders/orders": {
             "types": "./types/resources/orders/orders.d.ts",

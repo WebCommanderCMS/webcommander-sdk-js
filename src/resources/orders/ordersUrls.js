@@ -12,9 +12,8 @@ export const ORDER_SHIPMENTS = '/api/{api_version}/admin/orders/{order_id}/shipm
 export const ORDER_SHIPMENT = '/api/{api_version}/admin/orders/{order_id}/shipments/{shipment_id}';
 export const ORDER_UPDATE_STATUS = '/api/{api_version}/admin/orders/{order_id}/update-status';
 
-/** These two resolve the slot against the order's `internal_id`: its `order_id` names another order, or none. */
-export const ORDER_CUSTOM_FIELDS = '/api/{api_version}/admin/orders/{order_internal_id}/custom_fields';
-export const ORDER_SEND_INVOICE = '/api/{api_version}/admin/orders/{order_internal_id}/send-invoice';
+export const ORDER_CUSTOM_FIELDS = '/api/{api_version}/admin/orders/{order_id}/custom_fields';
+export const ORDER_SEND_INVOICE = '/api/{api_version}/admin/orders/{order_id}/send-invoice';
 
 export const PAYMENT_REFUNDS = '/api/{api_version}/admin/payment/{payment_id}/refunds';
 export const ORDER_STATUS_ADD = '/api/{api_version}/admin/order/add-order-status';

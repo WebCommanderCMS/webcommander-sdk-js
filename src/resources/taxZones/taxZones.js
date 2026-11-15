@@ -29,19 +29,6 @@ export function listTaxZones(client, queryParams = undefined, options = undefine
 }
 
 /**
- * `HEAD /admin/tax_zones` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxZones(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxZonesUrls.TAX_ZONES, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/tax_zones` — create a tax zone inside the `tax_zone` wrapper.
  * @param {Client} client @param {TaxZonePayload} payload a `TaxZoneInput`, a mapping or a JSON string
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<TaxZone>>}
@@ -71,21 +58,6 @@ export function getTaxZone(client, taxZoneId, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TaxZone,
-    });
-}
-
-/**
- * `HEAD /admin/tax_zones/{tax_zone_id}` — `200` even for an unknown id, so it is no existence check.
- * @param {Client} client @param {number|string} taxZoneId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxZone(client, taxZoneId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxZonesUrls.TAX_ZONE, {
-        pathParams: {tax_zone_id: taxZoneId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

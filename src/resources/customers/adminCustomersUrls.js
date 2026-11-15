@@ -1,4 +1,4 @@
-/** `{customer_id}` is a record's `customer_id`, never its `internal_id`. */
+/** `{customer_id}` is a record's `customer_id`. */
 
 export const ADMIN_CUSTOMERS = '/api/{api_version}/admin/customers';
 export const ADMIN_CUSTOMER = '/api/{api_version}/admin/customers/{customer_id}';

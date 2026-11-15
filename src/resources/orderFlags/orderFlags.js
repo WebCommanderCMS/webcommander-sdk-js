@@ -29,19 +29,6 @@ export function listOrderFlags(client, queryParams = undefined, options = undefi
 }
 
 /**
- * `HEAD /admin/order_flags` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headOrderFlags(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', orderFlagsUrls.ORDER_FLAGS, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/order_flags` — create a flag inside the `order_flag` wrapper; `name` and a hex `color` are required.
  * @param {Client} client @param {OrderFlagPayload} payload an `OrderFlagInput`, a mapping or a JSON string
  * @param {CallOptions} [options] @returns {Promise<ApiResponse<OrderFlag>>}
@@ -71,21 +58,6 @@ export function getOrderFlag(client, orderFlagId, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: OrderFlag,
-    });
-}
-
-/**
- * `HEAD /admin/order_flags/{order_flag_id}` — `200` with no body.
- * @param {Client} client @param {number|string} orderFlagId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headOrderFlag(client, orderFlagId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', orderFlagsUrls.ORDER_FLAG, {
-        pathParams: {order_flag_id: orderFlagId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

@@ -41,7 +41,7 @@ export function getCustomers(client, queryParams = undefined, options = undefine
 
 /**
  * `GET /admin/customers/{customer_id}`.
- * @param {Client} client @param {number|string} customerId the record's `customer_id`, never its `internal_id`
+ * @param {Client} client @param {number|string} customerId the record's `customer_id`
  * @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<Customer>>}
  */

@@ -29,19 +29,6 @@ export function listTaxProfiles(client, queryParams = undefined, options = undef
 }
 
 /**
- * `HEAD /admin/tax_profiles` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxProfiles(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxProfilesUrls.TAX_PROFILES, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/tax_profiles` — create a tax profile inside the `tax_profile` wrapper.
  * @param {Client} client
  * @param {TaxProfilePayload} payload a `TaxProfileInput`, a mapping or a JSON string
@@ -72,21 +59,6 @@ export function getTaxProfile(client, taxProfileId, options = undefined) {
         raiseOnError,
         responseFormat,
         dtoType: TaxProfile,
-    });
-}
-
-/**
- * `HEAD /admin/tax_profiles/{tax_profile_id}` — `200` even for an unknown id, so it is no existence check.
- * @param {Client} client @param {number|string} taxProfileId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headTaxProfile(client, taxProfileId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', taxProfilesUrls.TAX_PROFILE, {
-        pathParams: {tax_profile_id: taxProfileId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

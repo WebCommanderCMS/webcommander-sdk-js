@@ -39,7 +39,7 @@ export class ProductParent extends Dto {
     /** @type {boolean | null} */ isDisposable = this.declared('isDisposable');
 }
 
-/** One customer an audience names: `id` is the customer's `customer_id`, `internalId` its `internal_id`. */
+/** One customer an audience names: `id` is the customer's `customer_id`; `internalId` is for reference. */
 export class ProductSelectedCustomer extends Dto {
     static FIELDS = {
         id: 'int',

@@ -29,19 +29,6 @@ export function listInventoryLocations(client, queryParams = undefined, options 
 }
 
 /**
- * `HEAD /admin/inventory_locations` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headInventoryLocations(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', inventoryLocationsUrls.INVENTORY_LOCATIONS, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `POST /admin/inventory_locations` — create a location from a bare record, answered `201`;
  * `default: true` takes the flag off the row that held it.
  * @param {Client} client
@@ -73,21 +60,6 @@ export function getInventoryLocation(client, inventoryLocationId, options = unde
         raiseOnError,
         responseFormat,
         dtoType: InventoryLocation,
-    });
-}
-
-/**
- * `HEAD /admin/inventory_locations/{inventory_location_id}` — `200` with no body.
- * @param {Client} client @param {number|string} inventoryLocationId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headInventoryLocation(client, inventoryLocationId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', inventoryLocationsUrls.INVENTORY_LOCATION, {
-        pathParams: {inventory_location_id: inventoryLocationId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

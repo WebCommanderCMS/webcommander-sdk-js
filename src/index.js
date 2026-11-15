@@ -30,7 +30,7 @@ import * as shippingRates from './resources/shippingRates/shippingRates.js';
 import * as shippingRules from './resources/shippingRules/shippingRules.js';
 import * as shippingClasses from './resources/shippingClasses/shippingClasses.js';
 import * as aliases from './resources/aliases/aliases.js';
-import * as orderPreviews from './resources/orderPreviews/orderPreviews.js';
+import * as adminCarts from './resources/carts/adminCarts.js';
 import * as orders from './resources/orders/orders.js';
 import * as orderCustomFields from './resources/orderCustomFields/orderCustomFields.js';
 import * as blogCategories from './resources/blogCategories/blogCategories.js';
@@ -88,7 +88,7 @@ export {
     shippingRules,
     shippingClasses,
     aliases,
-    orderPreviews,
+    adminCarts,
     orders,
     orderCustomFields,
     blogCategories,
@@ -145,7 +145,7 @@ export * as shippingRatesUrls from './resources/shippingRates/shippingRatesUrls.
 export * as shippingRulesUrls from './resources/shippingRules/shippingRulesUrls.js';
 export * as shippingClassesUrls from './resources/shippingClasses/shippingClassesUrls.js';
 export * as aliasesUrls from './resources/aliases/aliasesUrls.js';
-export * as orderPreviewsUrls from './resources/orderPreviews/orderPreviewsUrls.js';
+export * as adminCartsUrls from './resources/carts/adminCartsUrls.js';
 export * as ordersUrls from './resources/orders/ordersUrls.js';
 export * as orderCustomFieldsUrls from './resources/orderCustomFields/orderCustomFieldsUrls.js';
 export * as blogCategoriesUrls from './resources/blogCategories/blogCategoriesUrls.js';
@@ -203,7 +203,7 @@ export * as shippingRatesDto from './resources/shippingRates/shippingRatesDto.js
 export * as shippingRulesDto from './resources/shippingRules/shippingRulesDto.js';
 export * as shippingClassesDto from './resources/shippingClasses/shippingClassesDto.js';
 export * as aliasesDto from './resources/aliases/aliasesDto.js';
-export * as orderPreviewsDto from './resources/orderPreviews/orderPreviewsDto.js';
+export * as adminCartsDto from './resources/carts/adminCartsDto.js';
 export * as ordersDto from './resources/orders/ordersDto.js';
 export * as orderCustomFieldsDto from './resources/orderCustomFields/orderCustomFieldsDto.js';
 export * as blogCategoriesDto from './resources/blogCategories/blogCategoriesDto.js';

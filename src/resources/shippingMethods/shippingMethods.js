@@ -29,19 +29,6 @@ export function listShippingMethods(client, queryParams = undefined, options = u
 }
 
 /**
- * `HEAD /admin/shipping_methods` — `200` with no body.
- * @param {Client} client @param {CallOptions} [options] @returns {Promise<ApiResponse<null>>}
- */
-export function headShippingMethods(client, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', shippingMethodsUrls.SHIPPING_METHODS, {
-        raiseOnError,
-        responseFormat,
-    });
-}
-
-/**
  * `GET /admin/shipping_methods/count` — `{"shipping_methods": {"count": N}}` for the whole collection.
  * @param {Client} client @param {Record<string, unknown>} [queryParams] @param {CallOptions} [options]
  * @returns {Promise<ApiResponse<ShippingMethodCount>>}
@@ -89,21 +76,6 @@ export function getShippingMethod(client, shippingMethodId, queryParams = undefi
         raiseOnError,
         responseFormat,
         dtoType: ShippingMethod,
-    });
-}
-
-/**
- * `HEAD /admin/shipping_methods/{shipping_method_id}` — `200` even for an unknown id, so it is no existence check.
- * @param {Client} client @param {number|string} shippingMethodId @param {CallOptions} [options]
- * @returns {Promise<ApiResponse<null>>}
- */
-export function headShippingMethod(client, shippingMethodId, options = undefined) {
-    const target = requireClient(client);
-    const {raiseOnError, responseFormat} = readCallOptions(options);
-    return target.sendApiRequest('HEAD', shippingMethodsUrls.SHIPPING_METHOD, {
-        pathParams: {shipping_method_id: shippingMethodId},
-        raiseOnError,
-        responseFormat,
     });
 }
 

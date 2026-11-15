@@ -8,7 +8,7 @@ import * as shippingRates from '../resources/shippingRates/shippingRates.js';
 import * as shippingRules from '../resources/shippingRules/shippingRules.js';
 import * as shippingClasses from '../resources/shippingClasses/shippingClasses.js';
 import * as aliases from '../resources/aliases/aliases.js';
-import * as orderPreviews from '../resources/orderPreviews/orderPreviews.js';
+import * as adminCarts from '../resources/carts/adminCarts.js';
 import * as orders from '../resources/orders/orders.js';
 import * as orderCustomFields from '../resources/orderCustomFields/orderCustomFields.js';
 import * as blogCategories from '../resources/blogCategories/blogCategories.js';
@@ -71,7 +71,7 @@ const RESOURCE_MODULES = new Map(
         ['shippingRules', shippingRules],
         ['shippingClasses', shippingClasses],
         ['aliases', aliases],
-        ['orderPreviews', orderPreviews],
+        ['adminCarts', adminCarts],
         ['orders', orders],
         ['orderCustomFields', orderCustomFields],
         ['blogCategories', blogCategories],

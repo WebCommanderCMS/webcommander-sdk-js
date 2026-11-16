@@ -64,5 +64,5 @@ export const ORDERS_SORT_FIELDS = Object.freeze([
 /** The header a payment refund is refused without; a repeat under one key replays the first. @type {string} */
 export const IDEMPOTENCY_KEY_HEADER = 'Idempotency-Key';
 
-/** Files a created order under this transaction number; it beats a `transaction_no` body field. @type {string} */
+/** Files a created order under this transaction number; a differing top-level `transaction_no` is `400 header_body_mismatch`. @type {string} */
 export const TRANSACTION_NO_HEADER = 'X-Transaction-No';

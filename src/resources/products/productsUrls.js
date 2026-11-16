@@ -30,5 +30,5 @@ export const PRODUCT_STOCK_LOCATIONS_KEY = 'locations';
  */
 export const PRODUCT_QUERY_PARAMS = Object.freeze(['field_metadata']);
 
-/** Tags a write with a transaction number; it wins over a body `transaction_no` it disagrees with. @type {string} */
+/** Tags a write with a transaction number; a differing top-level `transaction_no` is `400 header_body_mismatch`; reviews and inventory check beside `product`. @type {string} */
 export const TRANSACTION_NO_HEADER = 'X-Transaction-No';

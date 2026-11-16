@@ -13,5 +13,5 @@ export const ADMIN_CUSTOMER_CHANGE_PASSWORD = '/api/{api_version}/admin/customer
 export const ADMIN_CUSTOMER_STORE_CREDIT_ADJUSTMENTS =
     '/api/{api_version}/admin/customers/{customer_id}/store-credit/adjustments';
 
-/** Files the new customer under this transaction number; it beats a `transaction_no` body field. @type {string} */
+/** Files the new customer under this transaction number; a differing `transaction_no` beside `customer` is `400 header_body_mismatch`; one inside `customer` is not compared. @type {string} */
 export const TRANSACTION_NO_HEADER = 'X-Transaction-No';

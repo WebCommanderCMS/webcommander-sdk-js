@@ -14,5 +14,5 @@ export const CATEGORY_SECTIONS = Object.freeze([
     'assign_products',
 ]);
 
-/** Files a new category under this transaction number; it beats `category.transaction_no`. @type {string} */
+/** Files a new category under this transaction number; a differing `category.transaction_no` is `400 header_body_mismatch`; beside `category` it is not compared. @type {string} */
 export const TRANSACTION_NO_HEADER = 'X-Transaction-No';

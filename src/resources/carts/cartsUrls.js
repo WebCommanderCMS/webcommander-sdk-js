@@ -8,5 +8,5 @@ export const CART_ORDER = '/api/{api_version}/admin/orders/carts/{session_id}';
 /** The key the session write answers under, spelled as the store spells it. @type {string} */
 export const CART_SESSION_KEY = 'sessionId';
 
-/** Files the order a cart becomes under this transaction number; it beats `transaction_no`. @type {string} */
+/** Files the order a cart becomes under this transaction number. @type {string} */
 export const TRANSACTION_NO_HEADER = 'X-Transaction-No';
